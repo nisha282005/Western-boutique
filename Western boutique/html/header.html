@@ -1,0 +1,117 @@
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind Font Config -->
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          heading: ['Roboto', 'sans-serif'],
+          body: ['Poppins', 'sans-serif']
+        },
+        colors: {
+          navy: '#003366',
+          'rose-gold': '#D4956B',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  .text-navy-custom {
+    color: #003366 !important;
+  }
+  .hover-rose-gold:hover {
+    color: #D4956B !important;
+  }
+  .bg-navy-custom {
+    background-color: #003366 !important;
+  }
+  .border-navy-custom {
+    border-color: #003366 !important;
+  }
+  .ring-navy-custom {
+    --tw-ring-color: #003366 !important;
+  }
+</style>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 bg-white shadow-md font-body">
+  <div class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between gap-6">
+
+      <!-- Boutique Name on Left -->
+      <div class="flex-1">
+        <h1 class="text-3xl font-bold text-navy-custom font-heading">Western Boutique</h1>
+      </div>
+
+      <!-- Search Section -->
+      <div class="flex justify-center items-center gap-2 flex-1">
+        <!-- Search Input -->
+        <div class="relative w-full max-w-md">
+          <input
+            type="text"
+            placeholder="Search..."
+            class="w-full bg-white pl-4 pr-10 py-2 rounded-full text-sm text-gray-700 placeholder-gray-500 
+                   shadow-md outline-none border border-navy-custom ring-1 ring-navy-custom font-body"
+          />
+          <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm"></i>
+        </div>
+
+        <!-- Microphone Button -->
+       
+      </div>
+
+      <!-- Navigation Links on Right -->
+      <div class="flex-1 flex justify-end space-x-6 text-base text-center">
+        <a href="../html/index.html" class="flex flex-col items-center text-navy-custom hover-rose-gold transition-colors font-heading">
+          <i class="fas fa-home text-xl"></i>
+          <span class="text-sm">Home</span>
+        </a>
+
+        <a href="../html/shop.html" class="flex flex-col items-center text-navy-custom hover-rose-gold transition-colors font-heading">
+          <i class="fas fa-shopping-bag text-xl"></i>
+          <span class="text-sm">Shop</span>
+        </a>
+
+        <a href="cart.html" class="flex flex-col items-center relative text-navy-custom hover-rose-gold transition-colors font-heading">
+          <i class="fas fa-shopping-cart text-xl"></i>
+          <span class="text-sm">Cart</span>
+          <span id="cartCount" class="absolute -top-2 -right-3 bg-rose-gold text-white px-1.5 py-0.5 rounded-full text-xs font-sans">0</span>
+        </a>
+
+        <a href="../html/wardrobe.html" class="flex flex-col items-center text-navy-custom hover-rose-gold transition-colors font-heading">
+          <i class="fas fa-box-open text-xl"></i>
+          <span class="text-sm">Wardrobe</span>
+        </a>
+
+        <!-- Profile with Dropdown -->
+        <div class="relative group">
+          <button onclick="toggleProfileDropdown()" class="flex flex-col items-center text-navy-custom hover-rose-gold transition-colors focus:outline-none font-heading">
+            <i class="fas fa-user text-xl"></i>
+            <span class="text-sm">Profile</span>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div id="profileDropdown" class="absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg hidden z-50">
+            <a href="../html/register.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-body">
+              <i class="fas fa-sign-in-alt text-navy-custom"></i> Login / Signup
+            </a>
+            <a href="../html/wishlist.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-body">
+              <i class="fas fa-heart text-navy-custom"></i> Wishlist
+            </a>
+            <a href="../html/profile.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-body">
+              <i class="fas fa-user text-navy-custom"></i> My Account
+            </a>
+            <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-body">
+              <i class="fas fa-sign-out-alt text-navy-custom"></i> Logout
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Help Center - Western Boutique</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            roboto: ["Roboto", "sans-serif"],
+            poppins: ["Poppins", "sans-serif"]
+          },
+          colors: {
+            navy: "#1A365D",
+            "rose-gold": "#D4956B",
+            cream: "#F7FAFC",
+            charcoal: "#2D3748"
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&family=Poppins:wght@300;400;500;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/help-center.css"/>
+</head>
+
+<body class="bg-gray-100 text-charcoal min-h-screen flex flex-col font-poppins" x-data="{ selected: 'order', faqIndex: null }">
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <!-- Main Content -->
+  <div class="flex-grow flex flex-col">
+
+    <main class="flex-grow pt-28 pb-10">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- LEFT PANEL -->
+        <div class="space-y-4 md:col-span-1">
+
+          <!-- Title -->
+          <div class="bg-white border border-gray-300 p-4 rounded-xl shadow text-center">
+            <h1 class="text-2xl font-roboto font-bold text-navy">Help Center</h1>
+            <p class="text-rose-gold italic mt-1 text-sm">Find answers, ask questions, or contact us directly</p>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="bg-white border border-gray-300 p-4 rounded-xl shadow text-left">
+            <h2 class="text-navy font-roboto font-bold text-base mb-2">📞 Contact Us</h2>
+            <p class="text-sm">Phone: +91 98765 43210</p>
+            <p class="text-sm">Email: support@westernboutique.in</p>
+          </div>
+
+          <!-- Query Type -->
+          <div class="bg-white border border-gray-300 p-4 rounded-xl shadow">
+            <h2 class="text-navy font-roboto font-bold text-base mb-2">💬 Select Query Type</h2>
+            <button @click="selected = 'order'; faqIndex = null" :class="selected === 'order' ? 'text-rose-gold font-semibold' : 'text-charcoal'" class="block w-full text-left hover:text-rose-gold transition mb-1">Order Related Queries</button>
+            <button @click="selected = 'nonorder'; faqIndex = null" :class="selected === 'nonorder' ? 'text-rose-gold font-semibold' : 'text-charcoal'" class="block w-full text-left hover:text-rose-gold transition mb-1">Non-order Related Issues</button>
+            <button @click="selected = 'recent'; faqIndex = null" :class="selected === 'recent' ? 'text-rose-gold font-semibold' : 'text-charcoal'" class="block w-full text-left hover:text-rose-gold transition">Recent Issues</button>
+          </div>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="space-y-4 md:col-span-2" x-data="helpData()">
+          <div class="bg-navy text-white rounded-2xl p-4 shadow-xl border border-rose-gold">
+            <h2 class="font-roboto text-xl font-bold text-center mb-2">Frequently Asked Questions</h2>
+            <p class="text-xs text-center text-rose-gold italic mb-4">Select a query type on the left to view FAQs</p>
+
+            <template x-for="(item, index) in faqs[selected]" :key="index">
+              <div class="bg-gray-100 text-charcoal rounded-lg border border-gray-300 mb-3 overflow-hidden font-poppins">
+                <button @click="faqIndex === index ? faqIndex = null : faqIndex = index"
+                  class="w-full text-left px-3 py-2 font-semibold text-navy hover:text-rose-gold transition flex justify-between items-center font-roboto">
+                  <span x-text="item.title"></span>
+                  <svg :class="faqIndex === index ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div x-show="faqIndex === index" x-transition class="px-3 pb-3 text-sm text-charcoal">
+                  <p x-text="item.content"></p>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container" class="mt-auto"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../script/help-center.js"></script>
+  <script src="../script/header.js" defer></script>
+</body>
+</html>

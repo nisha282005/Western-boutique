@@ -1,0 +1,47 @@
+/* Hide scrollbar for Webkit-based browsers */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for Firefox and Edge */
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    #questionBox::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  #questionBox::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  #questionBox::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+  }
+
+  #questionBox::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  /* Completely hide scrollbar on all major browsers */
+html, body {
+  overflow: hidden;       /* disables both scrollbars */
+  height: 100%;
+}
+
+/* If you still want to allow scroll (just hide the bar), use this instead: */
+body {
+  overflow-y: scroll;     /* enables scroll without showing scrollbar */
+}
+
+body::-webkit-scrollbar {
+  width: 0px;             /* Chrome, Safari, Opera */
+  background: transparent;
+}
+
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}

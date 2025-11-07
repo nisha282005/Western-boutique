@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wishlist - Western Boutique</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/wishlist.css" />
+
+  <!-- Scripts -->
+  <script src="../script/wishlist.js" defer></script>
+  <script src="../script/header.js" defer></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Roboto', 'sans-serif'],
+            body: ['Poppins', 'sans-serif'],
+            serif: ["Playfair Display", "serif"]
+          },
+          colors: {
+            navy: "#1A365D",
+            "rose-gold": "#E2B08A",
+            cream: "#F7FAFC",
+            charcoal: "#2D3748",
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<!-- Use Poppins for body and Roboto for headings -->
+<body class="bg-cream font-body">
+
+  <!-- Header Section -->
+  <div id="header-container"></div>
+
+  <!-- Wishlist Section -->
+  <main class="pt-20">
+    <section class="bg-gray-100 py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-heading font-bold text-center text-navy mb-10">My Wishlist</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="wishlistContainer"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Placeholder -->
+  <div id="footer-container"></div>
+
+</body>
+</html>

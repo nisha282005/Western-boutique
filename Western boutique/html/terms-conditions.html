@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms & Conditions - Western Boutique</title>
+
+  <!-- TailwindCSS with Custom Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Roboto', 'sans-serif'],
+            body: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            navy: '#001f3f',
+            'rose-gold': '#b76e79',
+            charcoal: '#333333'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Alpine.js -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Custom Styles & Scripts -->
+  <link rel="stylesheet" href="../css/terms-conditions.css" />
+  <script src="../script/terms-conditions.js" defer></script>
+  <script src="../script/header.js" defer></script>
+</head>
+
+<body class="bg-gray-100 text-charcoal min-h-screen flex flex-col font-body">
+
+  <!-- Header Placeholder -->
+  <div id="header-container"></div>
+
+  <!-- Main Content -->
+  <main class="mt-20">
+    <div class="max-w-3xl mx-auto bg-navy mt-8 p-6 sm:p-8 rounded-2xl shadow-2xl border border-rose-gold">
+      <h1 class="text-3xl sm:text-4xl font-heading font-bold text-center text-white mb-4">Terms & Conditions</h1>
+      <p class="text-center text-sm text-rose-gold italic mb-8">Effective Date: July 15, 2025</p>
+
+      <div class="space-y-4" x-data="{ selected: null }">
+        <template x-for="(item, index) in [
+          { title: 'Acceptance of Terms', content: 'By accessing and using our website, you agree to our terms. If you do not agree, please refrain from using our platform.' },
+          { title: 'Use of Content', content: 'All site materials are owned by Western Boutique. Unauthorized usage is prohibited.' },
+          { title: 'Pricing & Availability', content: 'Prices are subject to change. Product availability may vary.' },
+          { title: 'Limitation of Liability', content: 'Western Boutique is not responsible for indirect or incidental damages.' },
+          { title: 'Changes to Terms', content: 'We may revise these terms at any time. Continued use implies acceptance.' },
+          { title: 'Governing Law', content: 'These terms are governed by Indian law. Disputes will be handled in Mumbai courts.' }
+        ]" :key="index">
+          <div class="border border-gray-200 rounded-lg overflow-hidden bg-gray-100">
+            <button
+              @click="selected !== index ? selected = index : selected = null"
+              class="w-full text-left px-4 py-3 font-heading font-semibold text-navy hover:text-rose-gold transition flex justify-between items-center"
+            >
+              <span x-text="item.title"></span>
+              <svg :class="selected === index ? 'rotate-180' : ''" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div x-show="selected === index" x-transition class="px-4 pb-4 text-sm text-charcoal">
+              <p x-text="item.content"></p>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Placeholder -->
+  <div id="footer-container" class="mt-10"></div>
+</body>
+</html>

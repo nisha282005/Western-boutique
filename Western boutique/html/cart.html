@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Boutique Cart Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#001f3f',
+            peach: '#D4956B'
+          },
+          fontFamily: {
+            roboto: ['Roboto', 'sans-serif'],
+            poppins: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-poppins">
+
+  <div class="min-h-screen flex flex-col lg:flex-row">
+
+    <!-- LEFT SECTION -->
+    <div class="w-full lg:w-2/3 h-screen overflow-hidden relative">
+      <!-- Fixed Stepper Header -->
+      <header class="fixed top-0 left-0 w-full lg:w-2/3 z-50 bg-white shadow-md px-4 py-3">
+        <div class="flex flex-wrap justify-center items-center gap-4 text-sm font-medium text-navy">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center font-poppins">1</div>
+            <span>Cart</span>
+          </div>
+          <div class="w-6 h-px border-t-2 border-navy"></div>
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full border-2 border-navy text-navy flex items-center justify-center font-poppins">2</div>
+            <span>Address</span>
+          </div>
+          <div class="w-6 h-px border-t-2 border-navy"></div>
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full border-2 border-navy text-navy flex items-center justify-center font-poppins">3</div>
+            <span>Checkout</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Scrollable Product Section -->
+      <div class="overflow-y-auto no-scrollbar h-full pt-20 pb-6 px-6 space-y-6" id="cart-container">
+        <!-- JS will inject product cards here -->
+      </div>
+    </div>
+
+    <!-- RIGHT SECTION -->
+    <div class="w-full lg:w-1/3 bg-navy text-white p-6">
+      <div class="sticky top-6 space-y-4">
+        <div class="text-center space-y-2">
+          <img src="../project_images/cart1.png" alt="Cart Icon" class="w-18 h-14 mx-auto" />
+          <h2 class="text-xl font-bold font-roboto text-white">Cart Summary</h2>
+        </div>
+
+        <div class="bg-white text-black rounded-xl p-6 shadow space-y-4">
+          <img src="../project_images/yourorder.jpg" class="w-20 h-20 mx-auto mb-3" alt="Cart Icon">
+          <h3 class="text-navy font-bold text-lg text-center font-roboto">Your Order</h3>
+          <div class="flex justify-between text-sm text-navy">
+            <span>Total Items:</span>
+            <span class="font-poppins font-bold" id="summary-items">0</span>
+          </div>
+          <div class="flex justify-between text-sm text-navy">
+            <span>Subtotal:</span>
+            <span class="font-poppins font-bold" id="summary-subtotal">₹0</span>
+          </div>
+          <div class="flex justify-between text-sm text-navy">
+            <span>Discount:</span>
+            <span class="font-poppins font-bold" id="summary-discount">-₹0</span>
+          </div>
+          <div class="flex justify-between text-sm border-t pt-2 font-bold text-peach">
+            <span>Total:</span>
+            <span class="font-poppins font-bold" id="summary-total">₹0</span>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 mt-4 justify-center">
+  <!-- Back Button -->
+  <a href="index.html"
+     class="h-[33px] px-4 w-fit flex items-center justify-center bg-navy text-white rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 text-sm font-medium font-poppins">
+    Back to Home
+  </a>
+
+  <!-- Proceed Button -->
+  <button onclick="proceedToAddress()"
+          class="h-[33px] px-4 w-fit flex items-center justify-center bg-navy text-white rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 text-sm font-medium font-poppins">
+    Proceed to Address
+  </button>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Size Chart Modal -->
+  <div id="size-chart-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 items-center justify-center">
+    <div class="bg-white p-6 rounded-xl w-11/12 sm:w-[400px] relative">
+      <button onclick="closeSizeChart()" class="absolute top-2 right-3 text-xl font-bold text-gray-600 hover:text-red-500">&times;</button>
+      <h3 class="text-lg font-bold text-navy mb-4 text-center font-roboto">Size Chart</h3>
+      <table class="w-full text-sm border border-gray-300 font-poppins">
+        <thead>
+          <tr class="bg-gray-100 text-left text-navy">
+            <th class="p-2 border">Size</th>
+            <th class="p-2 border">Bust (in)</th>
+            <th class="p-2 border">Waist (in)</th>
+            <th class="p-2 border">Hips (in)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="p-2 border text-center">S</td><td class="p-2 border text-center font-poppins">32 - 34</td><td class="p-2 border text-center font-poppins">26 - 28</td><td class="p-2 border text-center font-poppins">34 - 36</td></tr>
+          <tr><td class="p-2 border text-center">M</td><td class="p-2 border text-center font-poppins">34 - 36</td><td class="p-2 border text-center font-poppins">28 - 30</td><td class="p-2 border text-center font-poppins">36 - 38</td></tr>
+          <tr><td class="p-2 border text-center">L</td><td class="p-2 border text-center font-poppins">36 - 38</td><td class="p-2 border text-center font-poppins">30 - 32</td><td class="p-2 border text-center font-poppins">38 - 40</td></tr>
+          <tr><td class="p-2 border text-center">XL</td><td class="p-2 border text-center font-poppins">38 - 40</td><td class="p-2 border text-center font-poppins">32 - 34</td><td class="p-2 border text-center font-poppins">40 - 42</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Script Files -->
+  <script src="../script/cart.js"></script>
+</body>
+</html>

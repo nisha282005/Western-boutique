@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Boutique Address Page</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#001f3f',
+            peach: '#D4956B'
+          },
+          fontFamily: {
+            heading: ['Roboto', 'sans-serif'],
+            body: ['Poppins', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+
+<body class="bg-gray-100 font-body">
+
+<div class="grid grid-cols-1 lg:grid-cols-2 h-screen">
+
+  <!-- LEFT SECTION -->
+  <div class="relative flex flex-col h-screen overflow-hidden">
+    <header class="sticky top-0 z-50 bg-white shadow p-4">
+      <div class="flex justify-center items-center gap-4 text-sm font-medium text-navy flex-wrap sm:flex-nowrap">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center font-sans">1</div>
+          <span class="font-heading">Cart</span>
+        </div>
+        <div class="w-6 h-px border-t-2 border-navy"></div>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center font-sans">2</div>
+          <span class="font-heading">Address</span>
+        </div>
+        <div class="w-6 h-px border-t-2 border-navy"></div>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full border-2 border-navy text-navy flex items-center justify-center font-sans">3</div>
+          <span class="font-heading">Checkout</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto no-scrollbar p-6 space-y-6">
+      <!-- Saved Address -->
+      <div class="bg-gray-100 p-4 rounded-xl shadow space-y-2">
+        <div class="flex justify-between items-center">
+          <h2 class="font-bold text-navy font-heading">Saved Address</h2>
+          <button onclick="toggleEdit()" class="text-sm bg-navy text-white py-1.5 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">
+            ✏️ Edit
+          </button>
+        </div>
+        <div id="saved-address">
+          <p><strong>Name:</strong> Riya Sharma</p>
+          <p><strong>Phone:</strong> <span class="font-sans">+91 9876543210</span></p>
+          <p><strong>Address:</strong> 123, MG Road, Bangalore, KA - <span class="font-sans">560001</span></p>
+        </div>
+        <div id="edit-address-form" class="hidden space-y-3 mt-3">
+          <input type="text" class="w-full p-2 border-b bg-transparent focus:outline-none" value="Riya Sharma" />
+          <input type="text" class="w-full p-2 border-b bg-transparent focus:outline-none font-sans" value="+91 9876543210" />
+          <textarea class="w-full p-2 border-b bg-transparent focus:outline-none">123, MG Road, Bangalore</textarea>
+          <button onclick="saveEdit()" class="bg-navy text-white py-1.5 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">
+            Save
+          </button>
+          <p id="edit-success" class="text-green-600 font-medium hidden">✅ Saved successfully!</p>
+        </div>
+      </div>
+
+      <!-- New Address -->
+      <div class="bg-gray-100 p-4 rounded-xl shadow space-y-4">
+        <h2 class="font-bold text-navy font-heading">Add New Address</h2>
+        <div class="flex gap-4">
+          <label class="flex items-center gap-2"><input type="radio" name="addressType" onclick="showForm()"> Home</label>
+          <label class="flex items-center gap-2"><input type="radio" name="addressType" onclick="showForm()"> Office</label>
+        </div>
+        <div id="new-address-form" class="hidden space-y-3">
+          <input type="text" class="w-full p-2 border-b bg-transparent focus:outline-none" placeholder="Full Name" />
+          <div class="flex gap-2">
+            <select class="w-1/3 p-2 border-b bg-transparent focus:outline-none font-sans">
+              <option>+91</option><option>+1</option><option>+44</option>
+            </select>
+            <input type="text" class="w-2/3 p-2 border-b bg-transparent focus:outline-none font-sans" placeholder="Phone Number" />
+          </div>
+          <input type="text" class="w-full p-2 border-b bg-transparent focus:outline-none" placeholder="Door No. / Flat No." />
+          <input type="text" class="w-full p-2 border-b bg-transparent focus:outline-none" placeholder="Landmark (Optional)" />
+          <textarea class="w-full p-2 border-b bg-transparent focus:outline-none" placeholder="Full Address"></textarea>
+          <input type="text" class="w-full p-2 border-b bg-transparent focus:outline-none font-sans" placeholder="Pincode" />
+          <div class="flex gap-4">
+            <select class="w-1/2 p-2 border-b bg-transparent focus:outline-none">
+              <option selected disabled>State</option>
+              <option>Karnataka</option>
+              <option>Tamil Nadu</option>
+            </select>
+            <select class="w-1/2 p-2 border-b bg-transparent focus:outline-none">
+              <option selected disabled>Country</option>
+              <option>India</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <button onclick="saveNewAddress()" class="bg-navy text-white py-1.5 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">
+            Save
+          </button>
+          <p id="new-address-success" class="text-green-600 font-medium hidden">✅ Address added successfully!</p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="flex flex-wrap gap-4 pt-2">
+        <a href="index.html" class="bg-navy text-white py-1.5 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">
+          Back to Home
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT SECTION -->
+  <div class="bg-navy text-white flex flex-col items-center justify-center h-full p-6 space-y-4">
+    <div class="text-center space-y-2">
+      <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Address Icon" class="w-10 h-10 mx-auto" />
+      <h2 class="text-lg font-bold font-heading tracking-wide">Delivery Address</h2>
+    </div>
+
+    <!-- Order Summary Box -->
+    <div class="bg-white text-black rounded-2xl p-6 w-full max-w-sm space-y-4 shadow-lg text-center">
+      <img src="../project_images/order.jpg" alt="Cart" class="w-24 h-24 mx-auto" />
+      <h2 class="text-lg font-bold text-navy font-heading">Order Summary</h2>
+
+      <div class="flex justify-between text-sm text-navy">
+        <span>Total Items:</span>
+        <span id="summary-items" class="font-bold font-sans"></span>
+      </div>
+
+      <div class="flex justify-between text-sm text-navy">
+        <span>Subtotal:</span>
+        <span id="summary-subtotal" class="font-bold font-sans"></span>
+      </div>
+
+      <div class="flex justify-between text-sm text-navy">
+        <span>Discount:</span>
+        <span id="summary-discount" class="font-bold font-sans"></span>
+      </div>
+
+      <div class="flex justify-between text-sm border-t pt-2 font-bold text-peach">
+        <span>Total:</span>
+        <span id="summary-total" class="font-bold font-sans"></span>
+      </div>
+
+      <div class="flex gap-4 mt-6 justify-center flex-nowrap">
+  <button onclick="window.location.href='cart.html'" class="bg-navy text-white py-3 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 text-xs font-medium">
+    🛒 Back to Cart
+  </button>
+  <button onclick="window.location.href='checkout.html'" class="bg-navy text-white py-3 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 text-xs font-medium">
+    Proceed to Checkout
+  </button>
+</div>
+
+
+    </div>
+  </div>
+
+</div>
+
+<script src="../script/address.js"></script>
+</body>
+</html>

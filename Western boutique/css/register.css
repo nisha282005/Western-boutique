@@ -1,0 +1,211 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('../project_images/back.jpg') no-repeat center center/cover;
+  z-index: -1;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 60px;
+  width: 100%;
+  min-height: 100vh;
+  perspective: 1000px;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+}
+
+.card-inner {
+  width: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.form-box {
+  position: absolute;
+  width: 100%;
+  padding: 30px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  color: black;
+  backface-visibility: hidden;
+  top: 0; left: 0;
+}
+
+.form-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #001F54;
+  font-weight: bold;
+  font-family: Georgia, serif;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-group i:not(.toggle-password) {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  color: #001F54;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 35px 10px 25px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.9);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.input-group input::placeholder {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.input-group input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.input-group .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #001F54;
+}
+
+.input-group .prefix {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #001F54;
+}
+
+.form-box button {
+  width: 100%;
+  padding: 10px;
+  background: #001F54;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-family: Georgia, serif;
+}
+
+.form-box .error {
+  color: red;
+  font-size: 13px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+.form-box .toggle {
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+  color: black;
+  font-size: 13px;
+}
+
+.form-box .toggle span {
+  text-decoration: underline;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #001F54;
+  color: white;
+  margin-top: 10px;
+  font-family: Georgia, serif;
+}
+
+.google-btn i {
+  color: white;
+}
+
+.link {
+  color: #001F54;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+.register {
+  transform: rotateY(180deg);
+}
+
+.otp {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.otp input {
+  width: 22%;
+  padding: 10px;
+  text-align: center;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-bottom: 2px solid #001F54;
+  border-radius: 0;
+  font-size: 16px;
+  font-family: 'Segoe UI', sans-serif;
+  outline: none;
+}
+
+#otpTitle {
+  margin-top: 15px;
+  color: black;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#otpMessage {
+  margin-top: 10px;
+  font-weight: normal;
+  font-size: 14px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+@media (max-width: 480px) {
+  .form-box { padding: 20px; }
+  .form-box input, .form-box button { font-size: 14px; }
+}

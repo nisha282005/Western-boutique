@@ -1,0 +1,216 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Marcellus', serif;
+}
+
+.hero-section {
+  position: relative;
+  height: 24rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('image/backg.jpg') center/cover no-repeat;
+  text-align: center;
+  color: white;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 31, 63, 0.6);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-button {
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: bold;
+  border: 2px solid #1A365D;
+  background: white;
+  color: #1A365D;
+  cursor: pointer;
+}
+
+.hero-button:hover {
+  background-color: #f0f4f8;
+}
+
+.customer-promise, .customer-journey, .style-community, .style-advice {
+  padding: 4rem 1rem;
+  background: white;
+  color: #1A365D;
+}
+
+.customer-journey {
+  background: linear-gradient(135deg, #f9f0ff 0%, #f3e8ff 100%);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.promise-grid, .story-grid, .instagram-grid, .advice-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.promise-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.value-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem auto;
+  font-size: 2rem;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.testimonial-image {
+  position: relative;
+  height: 16rem;
+}
+
+.testimonial-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonial-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: white;
+  padding: 1rem;
+}
+
+.testimonial-content {
+  padding: 1.5rem;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.testimonial-author img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+}
+
+.stars i {
+  color: #E2B08A;
+}
+
+.instagram-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.instagram-post img {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.instagram-post:hover img {
+  transform: scale(1.05);
+}
+
+.share-style {
+  display: inline-block;
+  background-color: #1A365D;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.share-style:hover {
+  background-color: #172B4D;
+}
+
+.advice-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.advice-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.advice-box h3 {
+  font-family: 'Marcellus', serif;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.advice-box a {
+  color: #E2B08A;
+  text-decoration: none;
+  font-weight: bold;
+}
+/* Completely hide scrollbar on all major browsers */
+html, body {
+  overflow: hidden;       /* disables both scrollbars */
+  height: 100%;
+}
+
+/* If you still want to allow scroll (just hide the bar), use this instead: */
+body {
+  overflow-y: scroll;     /* enables scroll without showing scrollbar */
+}
+
+body::-webkit-scrollbar {
+  width: 0px;             /* Chrome, Safari, Opera */
+  background: transparent;
+}
+
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}

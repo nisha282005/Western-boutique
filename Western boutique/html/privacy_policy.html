@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy - Western Boutique</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Font Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Roboto', 'sans-serif'],
+            body: ['Poppins', 'sans-serif']
+          },
+          colors: {
+            navy: '#1A365D',
+            'rose-gold': '#E2B08A',
+            cream: '#F7FAFC',
+            charcoal: '#2D3748'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Alpine.js + Collapse Plugin -->
+  <script defer src="https://unpkg.com/alpinejs@3.13.5/dist/cdn.min.js"></script>
+  <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- External CSS & JS -->
+  <link rel="stylesheet" href="../css/privacy-policy.css" />
+  <script src="../script/privacy-policy.js" defer></script>
+  <script src="../script/header.js" defer></script>
+</head>
+
+<body class="bg-gray-100 text-charcoal font-body min-h-screen px-4 pb-8 flex flex-col">
+
+  <!-- Header Placeholder -->
+  <div id="header-container"></div>
+
+  <!-- Main Content -->
+  <main class="pt-20">
+    <div class="max-w-3xl mx-auto bg-navy p-4 sm:p-6 mt-8 rounded-2xl shadow-2xl border border-rose-gold min-h-[600px]">
+      <h1 class="text-3xl sm:text-4xl font-heading font-bold text-center text-white mb-4">Privacy Policy</h1>
+      <p class="text-center text-sm text-rose-gold italic mb-8 font-body">Effective Date: July 15, 2025</p>
+
+      <!-- Accordion -->
+      <div class="space-y-4" x-data="{ selected: null }">
+        <template x-for="(item, index) in [
+          { title: 'Personal Statement', content: 'We are committed to creating a secure and user-friendly experience. We strive to be transparent in all our practices through this policy.' },
+          { title: 'What are ‘cookies’?', content: 'Cookies are small files stored in your browser. First and third-party cookies help track analytics, performance, and preferences.' },
+          { title: 'Why do we use cookies?', content: 'We use cookies to customize your experience and enhance features. They help us remember preferences and understand how you interact with our site.' },
+          { title: 'What info do we gather?', content: 'We may collect information like your name, email, and address while you make purchases or sign up. We also gather data like time spent and pages viewed.' },
+          { title: 'Third-party sharing', content: 'We only share data with partners like payment gateways or analytics tools. No data is sold.' },
+          { title: 'Website Media', content: 'All content is owned by us. Visuals and branding remain the property of our boutique.' },
+          { title: 'Disclosure', content: 'You can request data access or removal anytime. Cookies can be disabled in your browser, but may affect site performance.' },
+          { title: 'Updates', content: 'We reserve the right to update this policy. Changes will appear here.' }
+        ]" :key="index">
+          <div class="border border-gray-200 rounded-lg overflow-hidden bg-gray-100">
+            <!-- Accordion Button -->
+            <button
+              @click="selected !== index ? selected = index : selected = null"
+              class="w-full text-left px-4 py-3 font-heading font-semibold text-navy hover:text-rose-gold transition flex justify-between items-center"
+            >
+              <span x-text="item.title"></span>
+              <svg :class="selected === index ? 'rotate-180' : ''" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <!-- Accordion Content -->
+            <div x-show="selected === index" x-collapse.min x-cloak class="px-4 pb-4 text-sm text-charcoal overflow-hidden font-body">
+              <p x-text="item.content"></p>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Placeholder -->
+  <div id="footer-container" class="mt-10"></div>
+
+</body>
+</html>

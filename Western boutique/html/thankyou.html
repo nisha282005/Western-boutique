@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You | Western Boutique</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ["Roboto", "sans-serif"],
+            body: ["Poppins", "sans-serif"],
+            serif: ["Playfair Display", "serif"],
+            sans: ["Inter", "sans-serif"],
+          },
+          colors: {
+            navy: "#1A365D",
+            peach: "#D4956B",
+            cream: "#FFF8F3",
+            sparkle: "#FFEEF0"
+          },
+          animation: {
+            float: "float 6s ease-in-out infinite",
+            pulseFade: "pulseFade 4s ease-in-out infinite",
+          },
+          keyframes: {
+            float: {
+              "0%, 100%": { transform: "translateY(0)" },
+              "50%": { transform: "translateY(-12px)" }
+            },
+            pulseFade: {
+              "0%, 100%": { opacity: 0.3 },
+              "50%": { opacity: 0.8 }
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: #f7fafc; /* Tailwind's gray-100 */
+    }
+  </style>
+</head>
+
+<body class="min-h-screen w-full flex flex-col items-center justify-center font-body text-center overflow-hidden relative px-6">
+
+  <!-- Floating Background Sparkles -->
+  <div class="absolute top-10 left-10 text-5xl text-peach opacity-20 pointer-events-none">✨</div>
+  <div class="absolute bottom-10 right-16 text-6xl text-peach opacity-10 pointer-events-none">🎉</div>
+
+  <!-- Main Content -->
+  <div class="flex flex-col md:flex-row items-center justify-center gap-10 z-10">
+    <!-- Left Image -->
+    <div class="w-64 h-64 md:w-80 md:h-80">
+      <img src="../project_images/thankyou1.png" alt="Girl with Shopping Bags" class="w-full h-full object-contain animated-float" />
+    </div>
+
+    <!-- Right Text Content -->
+    <div class="text-navy max-w-lg space-y-4">
+      <h1 class="text-4xl md:text-5xl font-heading font-bold">Thank You, Beautiful!</h1>
+      <p class="text-peach text-lg md:text-xl font-semibold">Your order was placed successfully 🎀</p>
+      <p class="text-gray-600 text-sm md:text-base">
+        We’re preparing your style story. You’ll receive a confirmation email shortly.  
+        Meanwhile, keep slaying with your sparkle ✨
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <a href="index.html" class="bg-navy text-white px-6 py-2 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">
+          Continue Shopping
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Hearts / Icons -->
+  <div class="absolute bottom-4 left-4 text-2xl text-peach">💖</div>
+  <div class="absolute top-6 right-6 text-2xl text-peach">🌸</div>
+</body>
+</html>

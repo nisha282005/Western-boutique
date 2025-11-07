@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Western Boutique</title>
+
+  <!-- Tailwind CSS + Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Roboto', 'sans-serif'],
+            body: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            navy: '#001F3F',
+            'rich-blue': '#1A365D',
+            'peach': '#E2B08A',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/about.css">
+</head>
+
+<body class="text-gray-800 font-body">
+
+<!-- Hero Section -->
+<section class="relative h-96 flex items-center justify-center bg-[url('../project_images/backg.jpg')] bg-cover bg-center">
+  <div class="absolute inset-0 bg-navy/60"></div>
+  <div class="relative z-10 text-center px-4 text-white">
+    <h1 class="text-4xl md:text-5xl font-bold font-heading mb-4">Your Fashion Journey Starts Here</h1>
+    <p class="text-xl max-w-2xl mx-auto mb-6">We don't just sell dresses - we help you discover your perfect style</p>
+    <button class="inline-block font-heading px-8 py-3 rounded-full font-bold transition border hero-button">About us</button>
+  </div>
+</section>
+
+<!-- Customer Promise Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl font-heading font-semibold text-center mb-12 text-rich-blue">Why Our Customers Love Us</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="text-center p-6">
+        <div class="value-icon rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-heart text-3xl text-rich-blue"></i>
+        </div>
+        <h3 class="text-xl font-heading font-semibold mb-3 text-rich-blue">Personalized Styling</h3>
+        <p class="text-rich-blue">Our style experts help you find pieces that flatter your unique body type</p>
+      </div>
+      <div class="text-center p-6">
+        <div class="value-icon rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-undo text-3xl text-rich-blue"></i>
+        </div>
+        <h3 class="text-xl font-heading font-semibold mb-3 text-rich-blue">Hassle-Free Returns</h3>
+        <p class="text-rich-blue">30-day easy returns if you're not completely satisfied</p>
+      </div>
+      <div class="text-center p-6">
+        <div class="value-icon rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-cut text-3xl text-rich-blue"></i>
+        </div>
+        <h3 class="text-xl font-heading font-semibold mb-3 text-rich-blue">Perfect Fit Guarantee</h3>
+        <p class="text-rich-blue">Detailed sizing guides and free alterations on select items</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Customer Stories Section -->
+<section class="py-16 customer-journey">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl font-heading font-bold text-center mb-12 text-rich-blue">Real Transformations</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Story 1 -->
+      <div class="testimonial-card bg-white rounded-lg overflow-hidden">
+        <div class="relative h-64">
+          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=687&q=80" alt="Customer story" class="w-full h-full object-cover">
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+            <h3 class="text-white font-semibold font-body">Ananya's Wedding Guest Look</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="mb-4 text-rich-blue">"The stylist helped me find a dress that made me feel confident at my cousin's wedding. I received so many compliments!"</p>
+          <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Ananya" class="w-10 h-10 rounded-full mr-3">
+            <div>
+              <h4 class="font-heading font-semibold text-rich-blue">Ananya Patel</h4>
+              <div class="mt-1">
+                <i class="fas fa-star text-peach"></i>
+                <i class="fas fa-star text-peach"></i>
+                <i class="fas fa-star-half-alt text-peach"></i>
+                <i class="far fa-star text-peach"></i>
+                <i class="far fa-star text-peach"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 2 -->
+      <div class="testimonial-card bg-white rounded-lg overflow-hidden">
+        <div class="relative h-64">
+          <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=687&q=80" alt="Customer story" class="w-full h-full object-cover">
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+            <h3 class="text-white font-semibold font-body">Priya's Office Wardrobe Refresh</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="mb-4 text-rich-blue">"I was struggling to find professional western wear that suited Indian body types. Western Boutique changed my work wardrobe completely!"</p>
+          <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya" class="w-10 h-10 rounded-full mr-3">
+            <div>
+              <h4 class="font-heading font-semibold text-rich-blue">Priya Sharma</h4>
+              <div class="mt-1">
+                <i class="fas fa-star text-peach"></i>
+                <i class="fas fa-star text-peach"></i>
+                <i class="fas fa-star text-peach"></i>
+                <i class="far fa-star text-peach"></i>
+                <i class="far fa-star text-peach"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Style Community Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl font-heading font-semibold text-center mb-12 text-rich-blue">Join Our Style Community</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+      <a href="#" class="instagram-post overflow-hidden rounded-lg">
+        <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=687&q=80" class="w-full h-48 object-cover hover:scale-110 transition" alt="Post">
+      </a>
+      <a href="#" class="instagram-post overflow-hidden rounded-lg">
+        <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=735&q=80" class="w-full h-48 object-cover hover:scale-110 transition" alt="Post">
+      </a>
+      <a href="#" class="instagram-post overflow-hidden rounded-lg">
+        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1374&q=80" class="w-full h-48 object-cover hover:scale-110 transition" alt="Post">
+      </a>
+      <a href="#" class="instagram-post overflow-hidden rounded-lg">
+        <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=687&q=80" class="w-full h-48 object-cover hover:scale-110 transition" alt="Post">
+      </a>
+    </div>
+    <div class="text-center">
+      <a href="#" class="inline-block font-heading text-white px-8 py-3 rounded-full font-semibold transition share-style">
+        <i class="fab fa-instagram mr-2"></i> Share Your Style #WesternBoutique
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Style Advice Section -->
+<section class="py-16 bg-gray-100">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl font-heading text-center font-semibold mb-12 text-rich-blue">Your Style Questions Answered</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white p-8 rounded-lg shadow">
+        <h3 class="text-xl font-heading font-semibold mb-4 text-rich-blue">"How do I choose the right dress for my body type?"</h3>
+        <p class="mb-4 text-rich-blue">Our stylists recommend A-line dresses for pear shapes, wrap dresses for hourglass figures, and empire waists for apple shapes.</p>
+        <a href="#" class="font-bold text-peach">Read our body type guide →</a>
+      </div>
+      <div class="bg-white p-8 rounded-lg shadow">
+        <h3 class="text-xl font-heading font-semibold mb-4 text-rich-blue">"What colors work best for Indian skin tones?"</h3>
+        <p class="mb-4 text-rich-blue">We find jewel tones like emerald, ruby and sapphire work beautifully across most Indian complexions.</p>
+        <a href="#" class="font-bold text-peach">Explore our color palette →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../script"></script>
+</body>
+</html>

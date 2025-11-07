@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wishlist - Western Boutique</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Custom CSS & JS -->
+  <link rel="stylesheet" href="../css/wish.css"/>
+  <script src="../script/wish.js" defer></script>
+
+  <!-- Tailwind Config Override -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ["Roboto", "sans-serif"],
+            body: ["Poppins", "sans-serif"],
+            serif: ["Playfair Display", "serif"],
+          },
+          colors: {
+            navy: "#1A365D",
+            "rose-gold": "#E2B08A",
+            cream: "#F7FAFC",
+            charcoal: "#2D3748",
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-cream font-body">
+
+  <!-- Wishlist Section -->
+  <section class="bg-white py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-navy mb-10 font-heading">My Wishlist</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="wishlistContainer"></div>
+    </div>
+  </section>
+
+</body>
+</html>

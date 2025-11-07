@@ -1,0 +1,25 @@
+
+    .stepper-item {
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .stepper-item {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+    }
+
+    #cart-container::-webkit-scrollbar {
+      width: 0px;
+      height: 0px;
+    }
+
+    #cart-container {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    #cart-container::-webkit-scrollbar-thumb {
+      background: transparent;
+    }

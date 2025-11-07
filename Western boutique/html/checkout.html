@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout Page</title>
+  
+  <!-- Import Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Roboto', 'sans-serif'],
+            body: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            navy: '#001f3f',
+            peach: '#D4956B'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="../css/checkout.css" />
+</head>
+
+<!-- Set base font to Poppins -->
+<body class="bg-white font-body" onclick="hideAllForms(event)">
+  <div class="min-h-screen grid grid-cols-1 lg:grid-cols-2">
+
+    <!-- LEFT SECTION -->
+    <div class="bg-navy text-white flex flex-col h-screen">
+
+      <!-- Stepper Header -->
+      <header class="w-full bg-white shadow-md py-4 sticky top-0 z-50">
+        <div class="flex justify-center items-center gap-4 text-sm font-medium text-navy">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center font-sans font-semibold">1</div>
+            <span class="font-heading">Cart</span>
+          </div>
+          <div class="w-6 h-px border-t-2 border-navy"></div>
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center font-sans font-semibold">2</div>
+            <span class="font-heading">Address</span>
+          </div>
+          <div class="w-6 h-px border-t-2 border-navy"></div>
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center font-sans font-semibold">3</div>
+            <span class="font-heading font-semibold">Checkout</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="flex-1 overflow-y-auto no-scrollbar px-4 py-4">
+        <div class="flex items-center gap-2 justify-center mb-4">
+          <span class="text-2xl">🛍️</span>
+          <h1 class="text-xl font-heading font-bold">Checkout</h1>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="bg-white text-black rounded-2xl p-6 w-full max-w-sm mx-auto space-y-4">
+          <img src="../project_images/checkout2.jpg" alt="Payment Illustration" class="w-40 h-40 object-cover rounded-lg mx-auto" />
+          <div class="w-full space-y-2 text-sm text-navy">
+            <h2 class="text-center text-lg font-heading font-bold">ORDER SUMMARY</h2>
+
+            <div class="flex justify-between">
+              <span>Total Items:</span>
+              <span id="summary-items" class="font-bold font-sans"></span>
+            </div>
+            <div class="flex justify-between">
+              <span>Subtotal:</span>
+              <span id="summary-subtotal" class="font-bold font-sans"></span>
+            </div>
+            <div class="flex justify-between">
+              <span>Discount:</span>
+              <span id="summary-discount" class="font-bold font-sans"></span>
+            </div>
+            <div class="flex justify-between font-bold border-t pt-2 text-peach">
+              <span>Order Total:</span>
+              <span id="summary-total" class="font-bold font-sans"></span>
+            </div>
+            <div class="pt-2">
+              <strong class="block font-heading">Address:</strong>
+              <p id="summary-address" class="font-sans text-sm"></p>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="flex gap-3 justify-center pt-4">
+            <a href="index.html" class="text-sm bg-navy text-white py-1.5 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">Back to Home</a>
+            <a href="address.html" class="text-sm bg-navy text-white py-1.5 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">Back to Address</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SECTION -->
+    <div class="mt-10 bg-white p-6 sm:p-8 space-y-6">
+
+      <!-- Payment Methods -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <button onclick="selectMethod(event, 'card')" class="border p-3 rounded-xl bg-navy  text-white">💳 Cards</button>
+        <button onclick="selectMethod(event, 'upi')" class="border p-3 rounded-xl bg-navy text-white">💰 UPI</button>
+        <button onclick="selectMethod(event, 'netbanking')" class="border p-3 rounded-xl bg-navy text-white">🏦 NetBanking</button>
+        <button onclick="selectMethod(event, 'cod')" class="border p-3 rounded-xl bg-navy text-white">📦 COD</button>
+      </div>
+
+      <!-- Payment Sections -->
+      <div id="payment-sections" class="space-y-6 relative z-10 mt-4">
+
+        <!-- CARD -->
+        <div id="card" class="hidden space-y-4">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button onclick="toggleCardForm(event, 'credit')" class="border rounded-md p-2 bg-navy text-white w-full">Credit</button>
+            <button onclick="toggleCardForm(event, 'debit')" class="border rounded-md p-2 bg-navy text-white w-full">Debit</button>
+          </div>
+          <p id="card-type-label" class="text-navy font-heading font-semibold flex items-center gap-2"></p>
+
+          <!-- Credit Form -->
+          <div id="credit-form" class="hidden space-y-4 bg-gray-100 p-4 rounded-md">
+            <input type="text" placeholder="Card Holder Name" class="bg-transparent border-b border-gray-400 p-2 w-full focus:outline-none">
+            <input type="text" placeholder="Card Number" class="bg-transparent border-b border-gray-400 p-2 w-full focus:outline-none">
+            <div class="grid grid-cols-2 gap-4">
+              <input type="date" class="bg-transparent border-b border-gray-400 p-2 w-full focus:outline-none">
+              <input type="text" placeholder="CVC" class="bg-transparent border-b border-gray-400 p-2 w-full focus:outline-none">
+            </div>
+            <a href="thankyou.html" class="block mt-10">
+              <button class="text-sm bg-navy text-white py-1.5 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">Pay Now</button>
+            </a>
+          </div>
+
+          <!-- Debit Form -->
+          <div id="debit-form" class="hidden space-y-4 bg-gray-100 p-4 rounded-md">
+            <input type="text" placeholder="Card Holder Name" class="bg-transparent border-b border-gray-400 p-2 w-full focus:outline-none">
+            <input type="text" placeholder="Card Number" class="bg-transparent border-b border-gray-400 p-2 w-full focus:outline-none">
+            <div class="grid grid-cols-2 gap-4">
+              <input type="date" class="bg-transparent border-b border-gray-400 p-2 w-full focus:outline-none">
+              <input type="text" placeholder="CVC" class="bg-transparent border-b border-gray-400 p-2 w-full focus:outline-none">
+            </div>
+            <a href="thankyou.html" class="block mt-10">
+              <button class="text-sm bg-navy text-white py-1.5 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">Pay Now</button>
+            </a>
+          </div>
+        </div>
+
+        <!-- UPI -->
+        <div id="upi" class="hidden space-y-4">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button class="border rounded-md p-2 bg-navy text-white w-full" onclick="showUPI('GPay')">GPay</button>
+            <button class="border rounded-md p-2 bg-navy text-white w-full" onclick="showUPI('PhonePe')">PhonePe</button>
+            <button class="border rounded-md p-2 bg-navy text-white w-full" onclick="showUPI('Paytm')">Paytm</button>
+            <button class="border rounded-md p-2 bg-navy text-white w-full" onclick="showUPI('BHIM')">BHIM</button>
+          </div>
+          <p id="upi-label" class="text-navy font-heading font-semibold flex items-center gap-2"></p>
+          <div id="upi-form" class="hidden bg-gray-100 p-4 rounded-md space-y-2">
+            <input type="text" placeholder="Enter your UPI ID" class="bg-transparent border-b border-gray-400 p-2 w-full focus:outline-none">
+            <a href="thankyou.html" class="block mt-10">
+              <button class="text-sm bg-navy text-white py-1.5 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">Pay Now</button>
+            </a>
+          </div>
+        </div>
+
+        <!-- NETBANKING -->
+        <div id="netbanking" class="hidden bg-gray-100 p-4 rounded-md space-y-2">
+          <label class="text-sm text-gray-700">Select Bank</label>
+          <select class="bg-transparent border-b border-gray-400 p-2 w-full focus:outline-none">
+            <option>Select Bank</option>
+            <option>HDFC</option>
+            <option>SBI</option>
+            <option>ICICI</option>
+          </select>
+          <a href="thankyou.html" class="block mt-10">
+            <button class="text-sm bg-navy text-white py-1.5 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">Pay Now</button>
+          </a>
+        </div>
+
+        <!-- COD -->
+        <div id="cod" class="hidden bg-gray-100 p-4 rounded-md space-y-2">
+          <p class="text-sm text-gray-700">Cash will be collected on delivery.</p>
+          <a href="thankyou.html" class="block mt-10">
+            <button class="text-sm bg-navy text-white py-1.5 px-4 rounded-full shadow hover:bg-gray-100 hover:text-navy hover:scale-105 transition-all duration-300 font-medium">Confirm Order</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../script/checkout.js"></script>
+</body>
+</html>

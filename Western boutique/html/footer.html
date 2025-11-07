@@ -1,0 +1,74 @@
+<!-- Google Fonts (Place in <head> once if not already there) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet" />
+
+<!-- Tailwind Config (Place in your <script> in head if not done already) -->
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          heading: ['Roboto', 'sans-serif'],
+          body: ['Poppins', 'sans-serif'],
+        },
+        colors: {
+          navy: '#001f3f',
+          peach: '#D4956B',
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Footer -->
+<link rel="stylesheet" href="../css/footer.css" />
+
+<footer class="shirnk-0 bg-[#0B1035] text-white py-4 font-body">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm items-start">
+
+      <!-- Boutique Info -->
+      <div>
+        <h4 class="font-heading font-bold text-[#D4956B] text-lg mb-2">Western Boutique</h4>
+        <p class="leading-relaxed">
+          Embrace elegance and western charm with our curated collections of stylish apparel and accessories.
+        </p>
+      </div>
+
+      <!-- Legal and Policy -->
+      <div>
+        <h4 class="font-heading font-bold text-[#D4956B] mb-2">Legal and Policy</h4>
+        <ul class="space-y-1">
+          <li><a href="../html/privacy_policy.html" class="hover:text-[#D4956B]">Privacy Policy</a></li>
+          <li><a href="../html/refund-policy.html" class="hover:text-[#D4956B]">Refund Policy</a></li>
+          <li><a href="../html/terms-conditions.html" class="hover:text-[#D4956B]">Terms and Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- Customer Service -->
+      <div>
+        <h4 class="font-heading font-bold text-[#D4956B] mb-2">Customer Service</h4>
+        <ul class="space-y-1">
+          <li><a href="../html/help-center.html" class="hover:text-[#D4956B]">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div>
+        <h4 class="font-heading font-bold text-[#D4956B] mb-2">Stay Connected</h4>
+        <p class="text-sm leading-tight">
+          Stay updated with<br>new arrivals and offers.
+        </p>
+        <div class="flex space-x-2 mt-3 mb-2">
+          <a href="#" class="bg-[#D4956B] text-[#0B1035] w-8 h-8 flex items-center justify-center rounded-full hover:bg-white transition"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="bg-[#D4956B] text-[#0B1035] w-8 h-8 flex items-center justify-center rounded-full hover:bg-white transition"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="bg-[#D4956B] text-[#0B1035] w-8 h-8 flex items-center justify-center rounded-full hover:bg-white transition"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-gray-700 mt-4 pt-3 text-center text-sm text-gray-400 font-body">
+      &copy; 2025 Western Boutique. All rights reserved.
+    </div>
+  </div>
+</footer>

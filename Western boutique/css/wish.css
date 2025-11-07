@@ -1,0 +1,28 @@
+/* style.css */
+body {
+  font-family: 'Playfair Display', serif;
+}
+
+.wishlist-heart.clicked {
+  color: white !important;
+}
+/* Completely hide scrollbar on all major browsers */
+html, body {
+  overflow: hidden;       /* disables both scrollbars */
+  height: 100%;
+}
+
+/* If you still want to allow scroll (just hide the bar), use this instead: */
+body {
+  overflow-y: scroll;     /* enables scroll without showing scrollbar */
+}
+
+body::-webkit-scrollbar {
+  width: 0px;             /* Chrome, Safari, Opera */
+  background: transparent;
+}
+
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}

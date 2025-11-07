@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Western Boutique - My Orders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../script/orderhis.js" defer></script>
+  <link rel="stylesheet" href="../css/orderhis.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+             heading: ["Roboto", "sans-serif"],
+            body: ["Poppins", "sans-serif"],
+          },
+          colors: {
+            navy: "#1A365D",
+            "rose-gold": "#E2B08A",
+            cream: "#F7FAFC",
+            charcoal: "#2D3748",
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-white font-sans">
+<main class="container mx-auto px-4 py-8">
+  <h2 class="text-4xl font-heading font-bold text-center text-navy mb-8">My Order History</h2>
+
+  <!-- Filter Section -->
+  <div class="flex flex-col md:flex-row justify-between items-center mb-8 p-4 bg-white rounded-xl  filter-section">
+   <!-- Filter by Date -->
+    <div class="relative w-full md:w-auto mb-4 md:mb-0">
+      <label for="dateFilter" class="block text-navy text-sm font-heading font-semibold mb-2">Filter by Date:</label>
+      <div class="relative">
+        <input type="date" id="dateFilter"
+              class="block w-full md:w-48 px-4 py-2 pr-10 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-gold text-navy font-body"
+              onchange="filterOrders()">
+      </div>
+    </div>
+
+
+    <!-- Filter by Status -->
+    <div class="relative w-full md:w-auto">
+      <label for="statusFilter" class="block text-navy text-sm font-heading font-semibold mb-2">Filter by Status:</label>
+      <div class="relative">
+        <select id="statusFilter" class="block w-full md:w-48 px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-gold text-navy font-body appearance-none" onchange="filterOrders()">
+          <option value="all">All Status</option>
+          <option value="delivered">Delivered</option>
+          <option value="shipped">Shipped</option>
+          <option value="processing">Processing</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
+          <svg class="fill-current h-4 w-4 text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order List -->
+  <div id="orderList">
+    <!-- Order Card 1: Delivered Order -->
+    <div class="order-card" data-date="2024-03-10" data-status="delivered">
+      <div class="flex justify-between items-center mb-4 border-b pb-3 border-gray-200">
+        <div>
+          <h3 class="font-body text-xl font-bold text-navy">Order #WB12345</h3>
+          <p class="text-sm text-gray-600 font-body">Order Date: <span class="font-semibold">March 10, 2025</span> at <span class="font-semibold">14:30</span></p>
+        </div>
+        <span class="text-lg font-heading font-semibold text-green-600 flex items-center">
+          <span class="order-status-dot status-delivered"></span> Delivered
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Order Details -->
+        <div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Items:</h4>
+          <ul class="list-none text-gray-700 font-body">
+            <li class="flex items-center mb-2">
+              <img src="../project_images/alinegown.jpg" alt="Boho Ruffle Dress" class="w-20 h-20 object-cover rounded-md mr-3 border border-gray-200">
+              <div>
+                <p class="font-semibold font-heading">Boho Ruffle Dress (Size M)</p>
+                <p class=" text-gray-500">Quantity: 1 | Price: ₹2,499</p>
+              </div>
+            </li>
+            <li class="flex items-center">
+              <img src="../project_images/neck.jpg" alt="Layered Necklace" class="w-20 h-22 object-cover rounded-md mr-3 border border-gray-200">
+              <div>
+                <p class="font-semibold font-heading">Layered Necklace</p>
+                <p class="text-sm text-gray-500">Quantity: 1 | Price: ₹799</p>
+              </div>
+            </li>
+          </ul>
+          <p class="font-text-body lg font-bold text-navy mt-4">Total: ₹3,298</p>
+        </div>
+
+        <!-- Tracking Information -->
+        <div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Tracking Progress:</h4>
+          <div class="tracking-timeline">
+            <div class="tracking-step completed">
+              <div class="tracking-icon-container"><i class="fas fa-check tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Order Placed</p>
+              <p class="text-xs text-gray-500">March 10, 2025, 14:30</p>
+            </div>
+            <div class="tracking-step completed">
+              <div class="tracking-icon-container"><i class="fas fa-box-open tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Processing & Packed</p>
+              <p class="text-xs text-gray-500">March 10, 2025, 16:00</p>
+            </div>
+            <div class="tracking-step completed">
+              <div class="tracking-icon-container"><i class="fas fa-truck-fast tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Shipped</p>
+              <p class="text-xs text-gray-500">March 11, 2025, 10:00 - Tracking ID: TRK98765</p>
+            </div>
+            <div class="tracking-step completed">
+              <div class="tracking-icon-container"><i class="fas fa-map-marker-alt tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Out for Delivery</p>
+              <p class="text-xs text-gray-500">March 14, 2025, 08:00</p>
+            </div>
+            <div class="tracking-step completed">
+              <div class="tracking-icon-container"><i class="fas fa-home tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Delivered</p>
+              <p class="text-xs text-gray-500">March 14, 2025, 16:45</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expanded Details Section (Initially Hidden) -->
+      <div class="hidden p-4 bg-gray-50 rounded-lg mt-4 border border-gray-200" id="detailsWB12345">
+        <h5 class="font-heading text-md font-semibold text-navy mb-2">Order Details:</h5>
+        <p class="text-sm text-gray-700 font-body mb-1"><span class="font-semibold">Shipping Address:</span> 123 Main St, Anytown, USA 12345</p>
+        <p class="text-sm text-gray-700 font-body mb-1"><span class="font-semibold">Payment Method:</span> Credit Card (**** **** **** 1234)</p>
+        <p class="text-sm text-gray-700 font-body"><span class="font-semibold">Estimated Delivery:</span> March 14, 2024</p>
+      </div>
+
+      <!-- Rating and Review -->
+      <div class="border-t pt-4 border-gray-200">
+        <h4 class="font-heading text-lg font-semibold text-navy mb-2">Rate this Order:</h4>
+        <div class="flex items-center mb-3 star-rating" data-order-id="WB12345">
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="1" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="2" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="3" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="4" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="far fa-star cursor-pointer text-xl" data-rating="5" onclick="setRating(this)"style="color: #E2B08A;"></i>
+        </div>
+        <textarea placeholder="Write a review..." class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-gold font-body text-gray-700"></textarea>
+        <button class="mt-3 bg-navy text-white px-5 py-2 rounded-full  font-body font-semibold hover:bg-opacity-90 transition">Submit Review</button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-end space-x-4 mt-4">
+        <button class="bg-rose-gold text-white px-5 py-2 rounded-full font-body font-semibold hover:bg-opacity-90 transition" onclick="downloadInvoice('WB12345')">
+          <i class="fas fa-file-invoice mr-2"></i> Download Invoice
+        </button>
+        <button class="bg-navy text-white px-5 py-2 rounded-full font-body  font-semibold hover:bg-opacity-90 transition" onclick="toggleDetails('WB12345')">
+          <i class="fas fa-info-circle mr-2"></i> View Details
+        </button>
+        <button class="bg-rose-gold  text-white px-5 py-2 rounded-full font-body font-semibold hover:bg-opacity-90 transition" onclick="reorder('WB12345')">
+          <i class="fas fa-redo mr-2"></i> Reorder
+        </button>
+      </div>
+    </div>
+
+    <!-- Order Card 2: Shipped Order (Current step: Shipped) -->
+    <div class="order-card" data-date="2024-02-20" data-status="shipped">
+      <div class="flex justify-between items-center mb-4 border-b pb-3 border-gray-200">
+        <div>
+          <h3 class="font-body text-xl font-bold text-navy">Order #WB12346</h3>
+          <p class="text-sm text-gray-600 font-sans">Order Date: <span class="font-semibold">February 20, 2025</span> at <span class="font-semibold">09:15</span></p>
+        </div>
+        <span class="text-lg font-heading font-semibold text-blue-600 flex items-center">
+          <span class="order-status-dot status-shipped"></span> Shipped
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Order Details -->
+        <div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Items:</h4>
+          <ul class="list-none text-gray-700 font-body">
+            <li class="flex items-center mb-2">
+              <img src="../project_images/blouse.jpg" alt="Floral Summer Top" class="w-20 h-20 object-cover rounded-md mr-3 border border-gray-200">
+              <div>
+                <p class=" font-heading font-semibold">Floral Summer Top (Size S)</p>
+                <p class="text-sm text-gray-500">Quantity: 1 | Price: ₹1,299</p>
+              </div>
+            </li>
+            <li class="flex items-center">
+              <img src="../project_images/denim_jacket.jpg" alt="Denim Jacket" class="w-20 h-20 object-cover rounded-md mr-3 border border-gray-200">
+              <div>
+                <p class="font-semibold font-heading">Denim Jacket (Size L)</p>
+                <p class="text-sm text-gray-500">Quantity: 1 | Price: ₹3,199</p>
+              </div>
+            </li>
+          </ul>
+          <p class="font-body text-lg font-bold text-navy mt-4">Total: ₹4,498</p>
+        </div>
+
+        <!-- Tracking Information -->
+        <div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Tracking Progress:</h4>
+          <div class="tracking-timeline">
+            <div class="tracking-step completed">
+              <div class="tracking-icon-container"><i class="fas fa-check tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Order Placed</p>
+              <p class="text-xs text-gray-500">February 20, 2025, 09:15</p>
+            </div>
+            <div class="tracking-step completed">
+              <div class="tracking-icon-container"><i class="fas fa-box-open tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Processing & Packed</p>
+              <p class="text-xs text-gray-500">February 20, 2025, 11:00</p>
+            </div>
+            <div class="tracking-step current">
+              <div class="tracking-icon-container"><i class="fas fa-truck-fast tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Shipped</p>
+              <p class="text-xs text-gray-500">February 21, 2025, 14:00 - Tracking ID: TRK98766</p>
+            </div>
+            <div class="tracking-step">
+              <div class="tracking-icon-container"><i class="fas fa-map-marker-alt tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Out for Delivery</p>
+              <p class="text-xs text-gray-500">Expected: March 18, 2025</p>
+            </div>
+            <div class="tracking-step">
+              <div class="tracking-icon-container"><i class="fas fa-home tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Delivered</p>
+              <p class="text-xs text-gray-500">Pending</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expanded Details Section (Initially Hidden) -->
+      <div class="hidden p-4 bg-gray-50 rounded-lg mt-4 border border-gray-200" id="detailsWB12346">
+        <h5 class="font-heading text-md font-semibold text-navy mb-2">Order Details:</h5>
+        <p class="text-sm text-gray-700 font-body mb-1"><span class="font-semibold">Shipping Address:</span> 456 Oak Ave, Townsville, USA 67890</p>
+        <p class="text-sm text-gray-700 font-body mb-1"><span class="font-semibold">Payment Method:</span> PayPal</p>
+        <p class="text-sm text-gray-700 font-body"><span class="font-semibold">Estimated Delivery:</span> March 18, 2024</p>
+      </div>
+
+      <!-- Rating and Review -->
+      <div class="border-t pt-4 border-gray-200">
+        <h4 class="font-heading text-lg font-semibold text-navy mb-2">Rate this Order:</h4>
+        <div class="flex items-center mb-3 star-rating" data-order-id="WB12346">
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="1" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="2" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="3" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="far fa-star cursor-pointer text-xl" data-rating="4" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="far fa-star cursor-pointer text-xl" data-rating="5" onclick="setRating(this)"style="color: #E2B08A;"></i>
+        
+        </div>
+        <textarea placeholder="Write a review..." class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-gold font-body text-gray-700"></textarea>
+        <button class="mt-3 bg-navy text-white px-5 py-2 rounded-full font-body font-semibold hover:bg-opacity-90 transition">Submit Review</button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-end space-x-4 mt-4">
+        <button class="bg-rose-gold text-white px-5 py-2 rounded-full font-body  font-semibold hover:bg-opacity-90 transition" onclick="downloadInvoice('WB12346')">
+          <i class="fas fa-file-invoice mr-2"></i> Download Invoice
+        </button>
+        <button class="bg-navy text-white px-5 py-2 rounded-full font-body font-semibold hover:bg-opacity-90 transition" onclick="toggleDetails('WB12346')">
+          <i class="fas fa-info-circle mr-2"></i> View Details
+        </button>
+        <button class="bg-rose-gold  text-white px-5 py-2 rounded-full font-body font-semibold hover:bg-opacity-90 transition" onclick="reorder('WB12346')">
+          <i class="fas fa-redo mr-2"></i> Reorder
+        </button>
+      </div>
+    </div>
+
+    <!-- Order Card 3: Processing Order (Current step: Processing) -->
+    <div class="order-card" data-date="2024-03-01" data-status="processing">
+      <div class="flex justify-between items-center mb-4 border-b pb-3 border-gray-200">
+        <div>
+          <h3 class="font-sans text-xl font-bold text-navy">Order #WB12347</h3>
+          <p class="text-sm text-gray-600 font-body">Order Date: <span class="font-semibold">March 01, 2025</span> at <span class="font-semibold">11:00</span></p>
+        </div>
+        <span class="text-lg font-semibold font-body text-yellow-600 flex items-center">
+          <span class="order-status-dot status-processing"></span> Processing
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Order Details -->
+        <div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Items:</h4>
+          <ul class="list-none text-gray-700 font-body">
+            <li class="flex items-center">
+              <img src="../project_images/footwear.jpg" alt="Heeled Sandals" class="w-20 h-20 object-cover rounded-md mr-3 border border-gray-200">
+              <div>
+                <p class="font-semibold font-heading">Heeled Sandals (Size 7)</p>
+                <p class="text-sm text-gray-500">Quantity: 1 | Price: ₹2,299</p>
+              </div>
+            </li>
+          </ul>
+          <p class="font-body text-lg font-bold text-navy mt-4">Total: ₹2,299</p>
+        </div>
+
+        <!-- Tracking Information -->
+        <div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Tracking Progress:</h4>
+          <div class="tracking-timeline">
+            <div class="tracking-step completed">
+              <div class="tracking-icon-container"><i class="fas fa-check tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Order Placed</p>
+              <p class="text-xs text-gray-500">March 01, 2025, 11:00</p>
+            </div>
+            <div class="tracking-step current">
+              <div class="tracking-icon-container"><i class="fas fa-box-open tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Processing & Packed</p>
+              <p class="text-xs text-gray-500">Currently being prepared</p>
+            </div>
+            <div class="tracking-step">
+              <div class="tracking-icon-container"><i class="fas fa-truck-fast tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Shipped</p>
+              <p class="text-xs text-gray-500">Pending</p>
+            </div>
+            <div class="tracking-step">
+              <div class="tracking-icon-container"><i class="fas fa-map-marker-alt tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Out for Delivery</p>
+              <p class="text-xs text-gray-500">Pending</p>
+            </div>
+            <div class="tracking-step">
+              <div class="tracking-icon-container"><i class="fas fa-home tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Delivered</p>
+              <p class="text-xs text-gray-500">Pending</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expanded Details Section (Initially Hidden) -->
+      <div class="hidden p-4 bg-gray-50 rounded-lg mt-4 border border-gray-200" id="detailsWB12347">
+        <h5 class="font-heading text-md font-semibold text-navy mb-2">Order Details:</h5>
+        <p class="text-sm text-gray-700 font-body mb-1"><span class="font-semibold">Shipping Address:</span> 789 Pine Ln, Villageton, USA 98765</p>
+        <p class="text-sm text-gray-700 font-body mb-1"><span class="font-semibold">Payment Method:</span> Google Pay</p>
+        <p class="text-sm text-gray-700 font-body><span class="font-semibold">Estimated Delivery:</span> March 05, 2024</p>
+      </div>
+
+      <!-- Rating and Review -->
+      <div class="border-t pt-4 border-gray-200">
+        <h4 class="font-heading text-lg font-semibold text-navy mb-2">Rate this Order:</h4>
+        <div class="flex items-center mb-3 star-rating" data-order-id="WB12347">
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="1" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="2" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="3" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="4" onclick="setRating(this)"style="color: #E2B08A;"></i>
+          <i class="fas fa-star cursor-pointer text-xl" data-rating="5" onclick="setRating(this)"style="color: #E2B08A;"></i>
+        
+        </div>
+        <textarea placeholder="Write a review..." class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-gold font-body text-gray-700"></textarea>
+        <button class="mt-3 bg-navy text-white px-5 py-2 rounded-full font-sans font-semibold hover:bg-opacity-90 transition">Submit Review</button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-end space-x-4 mt-4">
+        <button class="bg-rose-gold text-white px-5 py-2 rounded-full font-body  font-semibold hover:bg-opacity-90 transition" onclick="downloadInvoice('WB12347')">
+          <i class="fas fa-file-invoice mr-2"></i> Download Invoice
+        </button>
+        <button class="bg-navy text-white px-5 py-2 rounded-full  font-body font-semibold hover:bg-opacity-90 transition" onclick="toggleDetails('WB12347')">
+          <i class="fas fa-info-circle mr-2"></i> View Details
+        </button>
+        <button class="bg-rose-gold  text-white px-5 py-2 rounded-full font-body  font-semibold hover:bg-opacity-90 transition" onclick="reorder('WB12347')">
+          <i class="fas fa-redo mr-2"></i> Reorder
+        </button>
+      </div>
+    </div>
+
+    <!-- Order Card 4: Cancelled Order -->
+    <div class="order-card" data-date="2024-01-15" data-status="cancelled">
+      <div class="flex justify-between items-center mb-4 border-b pb-3 border-gray-200">
+        <div>
+          <h3 class="font-body text-xl font-bold text-navy">Order #WB12348</h3>
+          <p class="text-sm text-gray-600 font-body">Order Date: <span class="font-semibold">January 15, 2025</span> at <span class="font-semibold">18:00</span></p>
+        </div>
+        <span class="text-lg font-semibold  font-heading text-red-600 flex items-center">
+          <span class="order-status-dot status-cancelled"></span> Cancelled
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Order Details -->
+        <div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Items:</h4>
+          <ul class="list-none text-gray-700 font-body">
+            <li class="flex items-center">
+              <img src="../project_images/sun.jpg" alt="Retro Sunglass" class="w-20 h-20 object-cover rounded-md mr-3 border border-gray-200">
+              <div>
+                <p class="font-semibold font-heading">Retro Sunglass</p>
+                <p class="text-sm text-gray-500">Quantity: 1 | Price: ₹999</p>
+              </div>
+            </li>
+          </ul>
+          <p class="font-body text-lg font-bold text-navy mt-4">Total: ₹999</p>
+        </div>
+
+        <!-- Tracking Information -->
+        <div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Tracking Progress:</h4>
+          <div class="tracking-timeline">
+            <div class="tracking-step completed">
+              <div class="tracking-icon-container"><i class="fas fa-check tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Order Placed</p>
+              <p class="text-xs text-gray-500">January 15, 2025, 18:00</p>
+            </div>
+            <div class="tracking-step cancelled">
+              <div class="tracking-icon-container"><i class="fas fa-times-circle tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Order Cancelled</p>
+              <p class="text-xs text-gray-500">January 15, 2025, 18:30 - Reason: Customer Request</p>
+            </div>
+            <div class="tracking-step">
+              <div class="tracking-icon-container"><i class="fas fa-truck-fast tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Shipped</p>
+              <p class="text-xs text-gray-500">Not Applicable</p>
+            </div>
+            <div class="tracking-step">
+              <div class="tracking-icon-container"><i class="fas fa-home tracking-icon"></i></div>
+              <p class="text-sm text-gray-800 font-semibold">Delivered</p>
+              <p class="text-xs text-gray-500">Not Applicable</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expanded Details Section (Initially Hidden) -->
+      <div class="hidden p-4 bg-gray-50 rounded-lg mt-4 border border-gray-200" id="detailsWB12348">
+        <h5 class="font-heading text-md font-semibold text-navy mb-2">Order Details:</h5>
+        <p class="text-sm text-gray-700 font-body mb-1"><span class="font-semibold">Shipping Address:</span> N/A (Cancelled)</p>
+        <p class="text-sm text-gray-700 font-body mb-1"><span class="font-semibold">Payment Method:</span> N/A (Cancelled)</p>
+        <p class="text-sm text-gray-700 font-body"><span class="font-semibold">Cancellation Reason:</span> Customer Request</p>
+      </div>
+
+      <!-- Rating and Review (disabled for cancelled orders) -->
+      <div class="border-t pt-4 border-gray-200 opacity-50 cursor-not-allowed">
+        <h4 class="font-heading text-lg font-semibold text-navy mb-2">Rate this Order:</h4>
+        <div class="flex items-center mb-3 star-rating" data-order-id="WB12348">
+          <i class="far fa-star text-xl"style="color: #E2B08A;"></i>
+          <i class="far fa-star text-xl"style="color: #E2B08A;"></i>
+          <i class="far fa-star text-xl"style="color: #E2B08A;"></i>
+          <i class="far fa-star text-xl"style="color: #E2B08A;"></i>
+          <i class="far fa-star text-xl"style="color: #E2B08A;"></i>
+
+        </div>
+        <textarea placeholder="Write a review..." class="w-full p-3 border border-gray-300 rounded-lg font-body text-gray-700" disabled></textarea>
+        <button class="mt-3 bg-navy text-white px-5 py-2 rounded-full  font-body font-semibold opacity-50 cursor-not-allowed" disabled>Submit Review</button>
+      </div>
+
+      <!-- Action Buttons (disabled for cancelled orders) -->
+      <div class="flex justify-end space-x-4 mt-4">
+        <button class="bg-rose-gold text-white px-5 py-2 rounded-full  font-body font-semibold opacity-50 cursor-not-allowed" disabled>
+          <i class="fas fa-file-invoice mr-2"></i> Download Invoice
+        </button>
+        <button class="bg-navy text-white px-5 py-2 rounded-full font-body font-semibold hover:bg-opacity-90 transition" onclick="toggleDetails('WB12348')">
+          <i class="fas fa-info-circle mr-2"></i> View Details
+        </button>
+        <button class="bg-rose-gold  text-white px-5 py-2 rounded-full font-body  font-semibold opacity-50 cursor-not-allowed" disabled>
+          <i class="fas fa-redo mr-2"></i> Reorder
+        </button>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>

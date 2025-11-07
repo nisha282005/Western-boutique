@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Western Boutique Profile Page</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Roboto', 'sans-serif'],
+            body: ['Poppins', 'sans-serif']
+          },
+          colors: {
+            navy: '#001f3f'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+   <!-- Font Awesome CDN -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Icons + Alpine -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/profile.css">
+</head>
+
+<body class="font-body text-black bg-gray-100">
+  <div id="header-container"></div>
+  <div class="mt-24 flex p-5 gap-6" x-data="profilePage">
+    <!-- Sidebar -->
+    <div class="w-1/4 h-screen sticky top-0 bg-white rounded-2xl shadow-lg p-6">
+      <h1 class="text-2xl font-bold text-center mb-6 font-heading">Western Boutique</h1>
+      <ul class="space-y-4">
+        <li><button @click="activeTab = 'personal'" :class="activeTab === 'personal' ? 'bg-[#001f3f] text-white' : 'text-navy'" class="tab-button transition-none"><i data-lucide="user" class="icon"></i> Personal Information</button></li>
+        <li><button @click="activeTab = 'order'" :class="activeTab === 'order' ? 'bg-[#001f3f] text-white' : 'text-navy'" class="tab-button transition-none"><i data-lucide="shopping-bag" class="icon"></i> My Order History</button></li>
+        <li><button @click="activeTab = 'login'" :class="activeTab === 'login' ? 'bg-[#001f3f] text-white' : 'text-navy'" class="tab-button transition-none"><i data-lucide="lock" class="icon"></i> Login & Password</button></li>
+        <li><button @click="activeTab = 'about'" :class="activeTab === 'about' ? 'bg-[#001f3f] text-white' : 'text-navy'" class="tab-button transition-none"><i data-lucide="info" class="icon"></i> About Us</button></li>
+        <li><button @click="activeTab = 'help'" :class="activeTab === 'help' ? 'bg-[#001f3f] text-white' : 'text-navy'" class="tab-button transition-none"><i data-lucide="life-buoy" class="icon"></i> Help Centre</button></li>
+        <li><button @click="activeTab = 'wishlist'" :class="activeTab === 'wishlist' ? 'bg-[#001f3f] text-white' : 'text-navy'" class="tab-button transition-none"><i data-lucide="heart" class="icon"></i> Wishlist</button></li>
+        <li><button @click="activeTab = 'Logout'" :class="activeTab === 'Logout' ? 'bg-[#001f3f] text-white' : 'text-navy'" class="tab-button transition-none"><i data-lucide="log-out" class="icon"></i> Logout</button></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="w-3/4 ml-6 font-body">
+      <!-- Personal Information -->
+      <template x-if="activeTab === 'personal'">
+        <div class="box-bg h-full rounded-2xl shadow p-6">
+          <div class="p-4">
+            <form class="space-y-6 text-sm">
+              <div class="space-y-3">
+                <h2 class="section-heading font-heading text-xl font-semibold">Basic Info</h2>
+                <div class="form-grid">
+                  <div><label>First Name</label><input type="text" placeholder="First name" class="form-input" /></div>
+                  <div><label>Last Name</label><input type="text" placeholder="Last name" class="form-input" /></div>
+                  <div><label>Email</label><input type="email" placeholder="you@example.com" class="form-input" /></div>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <h2 class="section-heading font-heading text-xl font-semibold">Address</h2>
+                <div class="form-grid">
+                  <div><label>Flat / House</label><input type="text" placeholder="Building name" class="form-input" /></div>
+                  <div><label>Area / Street</label><input type="text" placeholder="Street/Village" class="form-input" /></div>
+                  <div><label>Landmark</label><input type="text" placeholder="Optional" class="form-input" /></div>
+                  <div><label>Pincode</label><input type="text" maxlength="6" placeholder="6-digit" class="form-input" /></div>
+                  <div><label>City</label><input type="text" placeholder="City" class="form-input" /></div>
+                  <div>
+                    <label>State</label>
+                    <select class="form-input">
+                      <option>Select</option>
+                      <option value="tn">Tamil Nadu</option>
+                      <option value="ka">Karnataka</option>
+                      <option value="kl">Kerala</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <h2 class="section-heading font-heading text-xl font-semibold">Contact</h2>
+                <div class="form-grid">
+                  <div>
+                    <label>Country Code</label>
+                    <select class="form-input">
+                      <option value="+91">+91</option>
+                      <option value="+1">+1</option>
+                    </select>
+                  </div>
+                  <div><label>Phone</label><input type="tel" placeholder="Phone number" class="form-input" /></div>
+                </div>
+              </div>
+              <div class="flex justify-end gap-3 pt-4 border-t">
+                <button type="button" class="discard-button">Discard changes</button>
+                <button type="submit" class="save-button">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </template>
+
+      <!-- Login -->
+      <template x-if="activeTab === 'login'">
+        <div class="box-bg h-full rounded-2xl shadow p-6 space-y-6">
+          <h2 class="text-xl font-heading font-semibold mb-4">Login & Password</h2>
+          <div class="space-y-4">
+            <div><label>Username</label><input type="text" class="form-input bg-gray-100" /></div>
+            <div>
+              <label>Forgot Password</label>
+              <input type="text" placeholder="Click to reset" class="form-input bg-gray-100" @focus="showPasswordBox = true" />
+            </div>
+            <div x-show="showPasswordBox" class="bg-gray-300 p-4 rounded space-y-4" x-transition>
+              <input type="password" placeholder="New Password" class="form-input" />
+              <input type="password" placeholder="Confirm Password" class="form-input" />
+              <button @click="alert('Password saved')" class="save-button">Save</button>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- Iframes -->
+      <template x-if="activeTab === 'order'">
+        <iframe src="../html/orderhis.html" class="w-full h-[600px] border-0 rounded-lg shadow box-bg"></iframe>
+      </template>
+      <template x-if="activeTab === 'about'">
+        <iframe src="../html/about.html" class="w-full h-[600px] border-0 rounded-lg shadow box-bg"></iframe>
+      </template>
+      <template x-if="activeTab === 'help'">
+        <iframe src="../html/helpcentre.html" class="w-full h-[600px] border-0 rounded-lg shadow box-bg"></iframe>
+      </template>
+      <template x-if="activeTab === 'wishlist'">
+        <iframe src="../html/wish.html" class="w-full h-[600px] border-0 rounded-lg shadow box-bg"></iframe>
+      </template>
+    </div>
+  </div>
+
+  <script src="../script/profile.js"></script>
+  <script src="../script/header.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!-- ===================== PRODUCT DETAIL PAGE ===================== -->
+        <section id="product-detail" class="page-section">
+            <div class="container mx-auto px-5 lg:px-10 py-12">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb text-sm mb-8 flex items-center text-gray-600">
+                    <a href="#" onclick="showPage('home')" class="text-rose-gold hover:underline">Home</a>
+                    <span class="mx-2">/</span>
+                    <a href="#" onclick="showPage('shop')" class="text-rose-gold hover:underline">Shop</a>
+                    <span class="mx-2">/</span>
+                    <a href="#" onclick="showPage('shop')" class="text-rose-gold hover:underline">Dresses</a>
+                    <span class="mx-2">/</span>
+                    <span id="detail-product-name-breadcrumb">Azure Dream Maxi Dress</span>
+                </nav>
+
+                <!-- Product Layout -->
+                <div class="product-layout flex flex-col lg:flex-row gap-8">
+                    <!-- Product Images (Left Column) -->
+                    <div class="product-images lg:w-1/2">
+                        <!-- Main Product Image -->
+                        <div class="relative mb-4 rounded-lg overflow-hidden bg-gray-100" style="aspect-ratio: 3/4;">
+                            <img id="detail-mainProductImage" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/89901f42-5857-4635-9b73-bc41e5f9ec76.png" alt="Product image" class="w-full h-full object-cover">
+                            
+                            <!-- Magnifier Lens (hidden by default) -->
+                            <div id="magnifierLens" class="absolute hidden border-2 border-rose-gold bg-white bg-opacity-50 cursor-none z-10" style="width: 150px; height: 150px; border-radius: 50%;"></div>
+                            <img id="magnifiedImage" class="absolute hidden z-20" style="width: 400%; height: 400%; top: 0; left: 0; transform-origin: top left;">
+
+                            <!-- Image Overlay Buttons -->
+                            <div class="absolute bottom-4 right-4 flex gap-2">
+                                <button id="view360Btn" class="glass text-sm px-3 py-1 rounded-full flex items-center gap-1">
+                                    <i class="fas fa-sync-alt"></i> 360° View
+                                </button>
+                                <button id="arPreviewBtn" class="glass text-sm px-3 py-1 rounded-full flex items-center gap-1">
+                                    <i class="fas fa-cube"></i> AR Preview
+                                </button>
+                            </div>
+                            <!-- Wishlist icon top right corner of the image -->
+                            <button class="wishlist-btn absolute top-4 right-4" onclick="toggleWishlist()" aria-label="Add to wishlist">
+                                <i class="far fa-heart text-2xl"></i>
+                            </button>
+                            
+                            <!-- Zoom Indicator -->
+                            <div class="absolute bottom-4 left-4 glass text-xs px-2 py-1 rounded flex items-center gap-1">
+                                <i class="fas fa-search-plus"></i> Hover to zoom
+                            </div>
+                        </div>
+
+                        <!-- Thumbnail Gallery -->
+                        <div class="thumbnail-gallery flex gap-2 overflow-x-auto pb-2">
+                            <div id="detail-thumbnailGallery" class="flex gap-2">
+                                <!-- Thumbnails populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Customer Gallery -->
+                        <div class="customer-gallery mt-8">
+                            <h3 class="font-medium text-lg mb-4">Customer Photos</h3>
+                            <div class="grid grid-cols-3 gap-2" id="detailCustomerPhotos">
+                                <div class="bg-gray-100 rounded-sm overflow-hidden" style="aspect-ratio: 1/1;">
+                                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d4551c9b-6089-4fb3-95b8-63c91a35e9da.png" alt="Customer wearing Azure Dream Maxi Dress in a city setting" class="w-full h-full object-cover hover:scale-105 transition-transform">
+                                </div>
+                                <div class="bg-gray-100 rounded-sm overflow-hidden" style="aspect-ratio: 1/1;">
+                                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/51b57b95-a716-4461-ba22-6b8f09dc5a24.png" alt="Customer wearing Azure Dream Maxi Dress in a city setting" class="w-full h-full object-cover hover:scale-105 transition-transform">
+                                </div>
+                                <div class="bg-gray-100 rounded-sm overflow-hidden" style="aspect-ratio: 1/1;">
+                                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4fc2dad9-b1f8-4d22-a102-cbc97cbfb51f.png" alt="Customer wearing Azure Dream Maxi Dress in a city setting" class="w-full h-full object-cover hover:scale-105 transition-transform">
+                                </div>
+                            </div>
+                            <button class="mt-2 text-sm text-rose-gold hover:underline">View All (12+)</button>
+                        </div>
+                    </div>
+
+                    <!-- Product Info (Right Column) -->
+                    <div class="product-info lg:w-1/2">
+                        <h1 id="detail-product-name" class="text-3xl font-bold serif text-navy mb-2"></h1>
+                        <p id="detail-product-price" class="text-xl font-medium text-navy mb-2"></p>
+                        
+                        <div class="flex items-center mb-4">
+                            <div id="detail-product-rating-stars" class="text-yellow-400 mr-2">
+                                <!-- Stars populated by JavaScript -->
+                            </div>
+                            <span id="detail-product-review-count" class="text-sm text-gray-600"></span>
+                        </div>
+
+                        <div class="product-story mb-6">
+                            <p id="detail-product-description" class="mb-4"></p>
+                            
+                            <ul id="detail-product-highlights" class="space-y-2">
+                                <!-- Highlights populated by JavaScript -->
+                            </ul>
+                        </div>
+                          <!-- Product Highlights -->
+                    <div class="product-highlights">
+                        <ul>
+                            <li><i class="fas fa-leaf"></i> Breathable eco-viscose fabric</li>
+                            <li><i class="fas fa-adjust"></i> Adjustable straps for perfect fit</li>
+                            <li><i class="fas fa-palette"></i> Available in 3 stunning colors</li>
+                            <li><i class="fas fa-star"></i> Perfect for special occasions</li>
+                        </ul>
+                    </div>
+                    
+             <!-- Limited Time Offer -->
+        <div class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-100 pulse">
+          <div class="flex items-center">
+            <i data-lucide="zap" class="w-5 h-5 text-yellow-600 mr-2"></i>
+            <span class="font-semibold text-blue-800">Limited Time Offer!</span>
+          </div>
+          <p class="text-sm text-blue-700 mt-1">Buy 2 dresses and get a free matching scarf worth ₹115!</p>
+        </div>
+                      <!-- Color Selection -->
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold mb-3">Color <span class="text-sm font-normal font-serif"><span id="detail-product-color-display"></span></span></h3>
+          <div class="flex space-x-3">
+            <div class="color-option w-10 h-10 rounded-full bg-red-500 cursor-pointer border-2 border-transparent selected" data-color="Red"></div>
+            <div class="color-option w-10 h-10 rounded-full bg-blue-500 cursor-pointer border-2 border-transparent" data-color="Blue"></div>
+            <div class="color-option w-10 h-10 rounded-full bg-green-500 cursor-pointer border-2 border-transparent" data-color="Green"></div>
+            <div class="color-option w-10 h-10 rounded-full bg-yellow-500 cursor-pointer border-2 border-transparent" data-color="Yellow"></div>
+          </div>
+        </div>
+                        <!-- Size Selection -->
+                        <div class="size-selection mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-medium">Size: <span id="detail-selectedSizeName">Select Size</span></h3>
+                                <div>
+                                    <button id="openSizeModalBtn" class="text-sm text-rose-gold hover:underline mr-4" onclick="openSizeModal()">Select Size</button>
+                                    <button id="sizeGuideLink" class="text-sm text-rose-gold hover:underline" onclick="showSizeGuide()">Size Guide</button>
+                                </div>
+                            </div>
+                            <div id="detail-sizeOptions" class="flex flex-wrap gap-2">
+                                <!-- Size options populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+<!-- 3. Transparent background size selector modal -->
+<div id="sizeModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+  <div class="bg-white bg-opacity-90 backdrop-blur-lg rounded-lg p-6 shadow-lg">
+    <h3 class="text-xl mb-4 text-navy font-semibold">Select Size</h3>
+    <div class="flex gap-3 flex-wrap" id="modalSizeOptions">
+      <button class="size-option border px-3 py-1 rounded-full">XS</button>
+      <button class="size-option border px-3 py-1 rounded-full">S</button>
+      <button class="size-option border px-3 py-1 rounded-full">M</button>
+      <button class="size-option border px-3 py-1 rounded-full">L</button>
+      <button class="size-option border px-3 py-1 rounded-full">XL</button>
+    </div>
+    <div class="mt-6 text-right">
+      <button onclick="closeSizeModal()" class="px-5 py-2 text-sm border border-gray-400 rounded-full hover:bg-gray-200">Close</button>
+    </div>
+  </div>
+</div>
+                        <!-- Fabric Info -->
+                        <div class="fabric-info mb-6">
+                            <p id="detail-fabric-info" class="text-sm text-gray-600"></p>
+                        </div>
+
+                        <!-- Quantity & Actions -->
+                        <div class="actions mb-8">
+                            <div class="flex items-center mb-4">
+                                <button id="decreaseQty" class="w-10 h-10 border border-gray-300 rounded-l hover:bg-gray-50" onclick="adjustQuantity(-1)">-</button>
+                                <input id="quantityValue" type="number" min="1" value="1" class="w-16 h-10 border-t border-b border-gray-300 text-center">
+                                <button id="increaseQty" class="w-10 h-10 border border-gray-300 rounded-r hover:bg-gray-50" onclick="adjustQuantity(1)">+</button>
+                            </div>
+                            <div class="flex gap-4 mb-4">
+                                <button class="bg-[#003366] text-white border-2 border-[#003366] rounded-full px-10 py-2 text-lg cursor-pointer hover:bg-blue-700 transition">
+                                    Add to Cart
+                                </button>
+                                <button class="bg-[#003366] text-white border-2 border-[#003366] rounded-full px-10 py-2 text-lg cursor-pointer hover:bg-blue-700 transition">
+                                    Book Now
+                                </button>
+                            </div>
+                            <!-- Social Sharing -->
+                            <div class="social-sharing">
+                                <p class="text-sm mb-2">Share this product:</p>
+                                <div class="flex gap-3">
+                                    <button class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700" onclick="shareOnSocialMedia('facebook')">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button>
+                                    <button class="w-10 h-10 rounded-full bg-pink-600 text-white flex items-center justify-center hover:bg-pink-700" onclick="shareOnSocialMedia('instagram')">
+                                        <i class="fab fa-instagram"></i>
+                                    </button>
+                                    <button class="w-10 h-10 rounded-full bg-blue-400 text-white flex items-center justify-center hover:bg-blue-500" onclick="shareOnSocialMedia('twitter')">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+                                    <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700" onclick="shareOnSocialMedia('pinterest')">
+                                        <i class="fab fa-pinterest-p"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <!-- Product Details Tabs -->
+                <section class="product-details-tabs mt-16">
+                    <div class="tab-buttons flex border-b border-gray-200">
+                        <button class="tab-button px-4 py-3 active" onclick="showTab('description')">Description</button>
+                        <button class="tab-button px-4 py-3" onclick="showTab('size-guide')">Size Guide</button>
+                        <button class="tab-button px-4 py-3" onclick="showTab('care')">Care Instructions</button>
+                        <button class="tab-button px-4 py-3" onclick="showTab('shipping')">Shipping & Returns</button>
+                    </div>
+                    
+                    <div id="description" class="tab-content active py-6">
+                        <!-- Updated Description Content -->
+                        <div class="description-section">
+                            <div class="text-content">
+                                <h3 class="font-bold text-lg mb-4">The Story Behind the Azure Dream</h3>
+                                <p>Inspired by azure skies and endless possibilities, this dress tells the story of a woman who dares to dream and makes those dreams reality. Crafted from premium eco-viscose, this maxi dress features a flowing silhouette that moves gracefully with every step.</p>
+                                <p>The adjustable straps ensure a perfect fit while the breathable fabric keeps you comfortable throughout the day. Whether you're attending a garden party, romantic dinner, or special celebration, this dress is designed to make you feel confident and elegant.</p>
+                                <h3 class="font-bold text-lg mb-4">Key Features:</h3>
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Premium Eco-Viscose Fabric</li>
+                                    <li><i class="fas fa-check-circle"></i> Adjustable Straps for Custom Fit</li>
+                                    <li><i class="fas fa-check-circle"></i> Flowing A-Line Silhouette</li>
+                                    <li><i class="fas fa-check-circle"></i> Breathable and Lightweight</li>
+                                    <li><i class="fas fa-check-circle"></i> Perfect for Any Special Occasion</li>
+                                </ul>
+                            </div>
+                            <div class="image-content">
+                                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d6a44174-03a7-4ddf-9e5b-24a89a9ccff6.png" alt="Azure Dream Maxi Dress in a scenic setting">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="size-guide" class="tab-content py-6">
+                        <h3 class="font-bold text-lg mb-4">Size Chart</h3>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600">Size</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600">Bust (inches)</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600">Waist (inches)</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600">Hip (inches)</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600">Length (inches)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-gray-200">XS</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">32</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">26</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">36</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">45</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-gray-200">S</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">34</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">28</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">38</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">46</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-gray-200">M</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">36</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">30</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">40</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">47</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-gray-200">L</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">38</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">32</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">42</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">48</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-gray-200">XL</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">40</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">34</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">44</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">49</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-gray-200">XXL</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">42</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">36</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">46</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">50</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="mt-6 bg-rose-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2">How to Measure</h4>
+                            <p class="text-sm">For bust, measure around the fullest part. For waist, measure at the narrowest point. For hips, measure around the fullest part of your hips.</p>
+                        </div>
+                    </div>
+                    
+                    <div id="care" class="tab-content py-6">
+                        <h3 class="font-bold text-lg mb-4">Care Instructions</h3>
+                        
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-water text-gray-500"></i>
+                                </div>
+                                <p class="text-xs text-center">Machine Wash Cold</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-hand-sparkles text-gray-500"></i>
+                                </div>
+                                <p class="text-xs text-center">Gentle Cycle</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-tshirt text-gray-500"></i>
+                                </div>
+                                <p class="text-xs text-center">Do Not Bleach</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-wind text-gray-500"></i>
+                                </div>
+                                <p class="text-xs text-center">Lay Flat to Dry</p>
+                            </div>
+                        </div>
+                        
+                        <p class="mb-4">To maintain the quality and color of your Azure Dream Maxi Dress:</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>Wash inside out in cold water on gentle cycle</li>
+                            <li>Use mild detergent without bleach</li>
+                            <li>Do not wring or twist the fabric</li>
+                            <li>Lay flat to dry away from direct sunlight</li>
+                            <li>Iron on low heat if needed</li>
+                            <li>Store folded in a cool, dry place</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="shipping" class="tab-content py-6">
+                        <h3 class="font-bold text-lg mb-4">Shipping Information</h3>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 mb-8">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2 flex items-center gap-2">
+                                    <i class="fas fa-shipping-fast text-rose-gold"></i>
+                                    <span>Standard Shipping</span>
+                                </h4>
+                                <p class="text-sm">3-5 business days</p>
+                                <p class="text-sm font-semibold mt-1">₹99 or FREE on orders over ₹2000</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2 flex items-center gap-2">
+                                    <i class="fas fa-truck-fast text-rose-gold"></i>
+                                    <span>Express Shipping</span>
+                                </h4>
+                                <p class="text-sm">1-2 business days</p>
+                                <p class="text-sm font-semibold mt-1">₹299</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2 flex items-center gap-2">
+                                    <i class="fas fa-globe text-rose-gold"></i>
+                                    <span>International Shipping</span>
+                                </h4>
+                                <p class="text-sm">7-14 business days</p>
+                                <p class="text-sm font-semibold mt-1">Calculated at Checkout</p>
+                            </div>
+                        </div>
+                        
+                        <h3 class="font-bold text-lg mb-4">Returns & Exchanges</h3>
+                        <p class="mb-4">We want you to love your purchase! If you're not completely satisfied, you may return most items within 15 days of delivery for a refund or exchange.</p>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2">Return Policy Details:</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-sm">
+                                <li>Items must be unworn, unwashed, and with all original tags attached</li>
+                                <li>Final sale items cannot be returned</li>
+                                <li>Return shipping fees are the responsibility of the customer</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                    
+<!-- Customer Reviews Section -->
+<h2 class="text-center text-2xl font-semibold text-pink-600 mb-4">Customer Reviews</h2>
+<div class="bg-white rounded-xl p-6 shadow-md grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="text-center">
+    <p class="text-4xl font-bold text-purple-600">4.2</p>
+    <div class="text-yellow-500 text-lg">★★★★☆</div>
+    <p class="text-sm text-gray-600">42 reviews</p>
+    <div class="mt-4 space-y-1 text-sm text-left text-gray-700">
+      <p>5★ <span class="inline-block w-40 bg-yellow-400 h-2 rounded ml-2" style="width:70%"></span> 70%</p>
+      <p>4★ <span class="inline-block w-40 bg-yellow-300 h-2 rounded ml-2" style="width:20%"></span> 20%</p>
+      <p>3★ <span class="inline-block w-40 bg-yellow-200 h-2 rounded ml-2" style="width:5%"></span> 5%</p>
+      <p>2★ <span class="inline-block w-40 bg-yellow-100 h-2 rounded ml-2" style="width:3%"></span> 3%</p>
+      <p>1★ <span class="inline-block w-40 bg-yellow-50 h-2 rounded ml-2" style="width:2%"></span> 2%</p>
+    </div>
+   <button id="writeReviewBtn" class="mt-4 border-2 border-blue-500 text-navy-600 px-4 py-2 rounded-lg hover:bg-navy-100 transition">Write a Review</button>
+  </div>
+  <div class="space-y-4 text-sm text-gray-700" id="reviewsList">
+    <div>
+      <p class="font-semibold text-yellow-500">Priya.S   ★★★★★ </p>
+      <p class="text-xs text-gray-400">2 weeks ago</p>
+      <p class="mt-1">Perfect fit and so comfortable! The fabric is soft and breathable, and the fit is just perfect.</p>
+    </div>
+    <div>
+      <p class="font-semibold text-yellow-500">Ananya.K  ★★★★☆ </p>
+      <p class="text-xs text-gray-400">1 month ago</p>
+      <p class="mt-1">Beautiful dress! Excellent quality. Just a little large, recommend sizing down.</p>
+    </div>
+    <div>
+      <p class="font-semibold text-yellow-500">Riya.M ★★★★★ </p>
+      
+      <p class="text-xs text-gray-400">2 months ago</p>
+      <p class="mt-1">Exceeded expectations! I got many compliments when wearing it. Will definitely buy again!</p>
+    </div>
+  </div>
+</div>
+
+<!-- You May Also Like Section -->
+<h2 class="text-center text-2xl font-semibold text-pink-600 mt-12 mb-4">You May Also Like</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10" id="recommendationsGrid">
+  <div class="bg-white p-2 rounded-lg relative">
+    <img src="project_images/summer.jpg"  class="rounded-lg" />
+    <span class="absolute top-2 right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded-full">NEW</span>
+    <p class="text-sm mt-2 font-semibold">Casual Summer Dress</p>
+  </div>
+  <div class="bg-white p-2 rounded-lg relative">
+    <img src="project_images/denim_jacket.jpg" class="rounded-lg" />
+    <span class="absolute top-2 right-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">SALE</span>
+    <p class="text-sm mt-2 font-semibold">Trendy Jacket Set</p>
+  </div>
+  <div class="bg-white p-2 rounded-lg">
+    <img src="project_images/ripped.jpg"class="rounded-lg" />
+    <p class="text-sm mt-2 font-semibold">Floral Red Dress</p>
+  </div>
+  <div class="bg-white p-2 rounded-lg">
+    <img src="project_images/jacket.jpg" class="rounded-lg" />
+    <p class="text-sm mt-2 font-semibold">Peach Bomber Jacket</p>
+  </div>
+</div>
+<div id="relatedProductsGrid"></div>
+</div>
+
+
+    <!-- Footer -->
+     <div id="footer-container"></div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideModal('cartModal')">&times;</span>
+            <h2 class="text-xl font-bold mb-6">Your Shopping Cart</h2>
+            
+            <div id="cartItems" class="space-y-4 mb-6">
+                <!-- Cart items populated by JavaScript -->
+            </div>
+            
+            <div class="cart-summary border-t pt-4">
+                <div class="flex justify-between mb-2">
+                    <span>Subtotal:</span>
+                    <span id="cartSubtotal">₹0</span>
+                </div>
+                <div class="flex justify-between mb-4">
+                    <span>Shipping:</span>
+                    <span id="cartShipping">FREE</span>
+                </div>
+                <div class="flex justify-between font-bold text-lg">
+                    <span>Total:</span>
+                    <span id="cartTotal">₹0</span>
+                </div>
+                
+                <button class="w-full bg-rose-gold hover:bg-opacity-90 text-white py-3 rounded font-medium mt-6 transition">
+                    Proceed to Checkout
+                </button>
+                
+                <button class="w-full mt-3 text-navy hover:text-rose-gold" onclick="hideModal('cartModal')">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Size Guide Modal -->
+    <div id="sizeGuideModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideModal('sizeGuideModal')">&times;</span>
+            <h2 class="text-xl font-bold mb-6">Size Guide</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600">Size</th>
+                            <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600">Bust (inches)</th>
+                            <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600">Waist (inches)</th>
+                            <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600">Hip (inches)</th>
+                            <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600">Length (inches)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-200">XS</td>
+                            <td class="py-2 px-4 border-b border-gray-200">32</td>
+                            <td class="py-2 px-4 border-b border-gray-200">26</td>
+                            <td class="py-2 px-4 border-b border-gray-200">36</td>
+                            <td class="py-2 px-4 border-b border-gray-200">45</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-200">S</td>
+                            <td class="py-2 px-4 border-b border-gray-200">34</td>
+                            <td class="py-2 px-4 border-b border-gray-200">28</td>
+                            <td class="py-2 px-4 border-b border-gray-200">38</td>
+                            <td class="py-2 px-4 border-b border-gray-200">46</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-200">M</td>
+                            <td class="py-2 px-4 border-b border-gray-200">36</td>
+                            <td class="py-2 px-4 border-b border-gray-200">30</td>
+                            <td class="py-2 px-4 border-b border-gray-200">40</td>
+                            <td class="py-2 px-4 border-b border-gray-200">47</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-200">L</td>
+                            <td class="py-2 px-4 border-b border-gray-200">38</td>
+                            <td class="py-2 px-4 border-b border-gray-200">32</td>
+                            <td class="py-2 px-4 border-b border-gray-200">42</td>
+                            <td class="py-2 px-4 border-b border-gray-200">48</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-200">XL</td>
+                            <td class="py-2 px-4 border-b border-gray-200">40</td>
+                            <td class="py-2 px-4 border-b border-gray-200">34</td>
+                            <td class="py-2 px-4 border-b border-gray-200">44</td>
+                            <td class="py-2 px-4 border-b border-gray-200">49</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-200">XXL</td>
+                            <td class="py-2 px-4 border-b border-gray-200">42</td>
+                            <td class="py-2 px-4 border-b border-gray-200">36</td>
+                            <td class="py-2 px-4 border-b border-gray-200">46</td>
+                            <td class="py-2 px-4 border-b border-gray-200">50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-6 bg-rose-50 p-4 rounded-lg">
+                <h4 class="font-semibold mb-2">How to Measure</h4>
+                <p class="text-sm">Measure around the fullest part of your bust, waist, and hips while wearing the undergarments you plan to wear with your dress. Keep the measuring tape snug but not tight.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideModal('reviewModal')">&times;</span>
+            <h2 class="text-xl font-bold mb-6">Write a Review</h2>
+            
+            <form id="reviewForm">
+                <div class="mb-4">
+                    <label class="block mb-2">Rating</label>
+                    <div class="rating-stars flex" id="reviewRatingStars">
+                        <i class="far fa-star text-2xl text-yellow-400 cursor-pointer" onclick="setRating(1)"></i>
+                        <i class="far fa-star text-2xl text-yellow-400 cursor-pointer" onclick="setRating(2)"></i>
+                        <i class="far fa-star text-2xl text-yellow-400 cursor-pointer" onclick="setRating(3)"></i>
+                        <i class="far fa-star text-2xl text-yellow-400 cursor-pointer" onclick="setRating(4)"></i>
+                        <i class="far fa-star text-2xl text-yellow-400 cursor-pointer" onclick="setRating(5)"></i>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="reviewTitle" class="block mb-2">Title</label>
+                    <input type="text" id="reviewTitle" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-rose-gold">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="reviewText" class="block mb-2">Review</label>
+                    <textarea id="reviewText" rows="4" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-rose-gold"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-navy hover:bg-opacity-90 text-white py-3 rounded font-medium transition">
+                    Submit Review
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-content"></div>
+    </div>

@@ -1,0 +1,116 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+}
+
+.lookbook {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+}
+
+.model {
+  position: relative;
+  width: 200px;
+}
+
+.model img {
+  width: 100%;
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.item-box {
+  width: 150px;
+  text-align: center;
+  font-size: 13px;
+  color: #333;
+  position: relative;
+}
+
+.item-box img {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.line {
+  width: 2px;
+  height: 100px;
+  background: #aaa;
+  position: absolute;
+}
+
+.top-line {
+  top: 50%;
+  right: -40px;
+  transform: translateY(-50%) rotate(-45deg);
+  width: 80px;
+  height: 2px;
+}
+
+.bottom-line {
+  top: 50%;
+  left: -40px;
+  transform: translateY(-50%) rotate(45deg);
+  width: 80px;
+  height: 2px;
+}
+
+.footer-text {
+  margin-top: 40px;
+}
+
+.footer-text p {
+  font-size: 15px;
+  margin: 4px 0;
+}
+
+.tagline {
+  font-size: 13px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.selectors {
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.selectors select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  font-size: 14px;
+}

@@ -1,0 +1,124 @@
+ /* Custom styles for order history page */
+    .order-card {
+      background-color:#ffff;
+      border-radius: 0.75rem; /* rounded-xl */
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .order-status-dot {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+    .status-delivered { background-color: #10B981; /* green-500 */ }
+    .status-shipped { background-color: #3B82F6; /* blue-500 */ }
+    .status-processing { background-color: #F59E0B; /* yellow-500 */ }
+    .status-cancelled { background-color: #EF4444; /* red-500 */ }
+
+    /* Enhanced Tracking Timeline Styles */
+    .tracking-timeline {
+      position: relative;
+      padding-left: 1.5rem; /* Space for the vertical line */
+    }
+    .tracking-step {
+      position: relative;
+      margin-bottom: 2rem; /* Space between steps */
+      padding-bottom: 0.5rem;
+      border-left: 2px dotted #D1D5DB; /* Default dotted line */
+      padding-left: 1.5rem;
+      transition: all 0.3s ease-in-out;
+    }
+    .tracking-step:last-child {
+      margin-bottom: 0;
+      border-left: none; /* No line after the last step */
+    }
+    .tracking-icon-container {
+      position: absolute;
+      left: -1.1rem; /* Adjust to center icon on the dotted line */
+      top: -0.25rem; /* Align icon with the text */
+      background-color: #fff; /* To make the icon stand out on the line */
+      border-radius: 50%;
+      padding: 0.25rem;
+      z-index: 10;
+      box-shadow: 0 0 0 3px #fff; /* White ring around icon */
+      transition: all 0.3s ease-in-out;
+    }
+    .tracking-icon {
+      color: #D1D5DB; /* Default icon color */
+      font-size: 1.2rem;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Tracking Step States */
+    .tracking-step.completed {
+      border-left-color: #10B981; /* Green for completed */
+    }
+    .tracking-step.completed .tracking-icon-container {
+      box-shadow: 0 0 0 3px #fff, 0 0 0 6px rgba(16, 185, 129, 0.3); /* Green glow */
+    }
+    .tracking-step.completed .tracking-icon {
+      color: #10B981; /* Green icon */
+    }
+
+    .tracking-step.current {
+      border-left-color: #E2B08A; /* Rose-gold for current */
+      font-weight: bold;
+    }
+    .tracking-step.current .tracking-icon-container {
+      box-shadow: 0 0 0 3px #fff, 0 0 0 6px rgba(226, 176, 138, 0.5); /* Rose-gold glow */
+    }
+    .tracking-step.current .tracking-icon {
+      color: #E2B08A; /* Rose-gold icon */
+    }
+
+    .tracking-step.cancelled {
+      border-left-color: #EF4444; /* Red for cancelled */
+    }
+    .tracking-step.cancelled .tracking-icon-container {
+      box-shadow: 0 0 0 3px #fff, 0 0 0 6px rgba(239, 68, 68, 0.3); /* Red glow */
+    }
+    .tracking-step.cancelled .tracking-icon {
+      color: #EF4444; /* Red icon */
+    }
+
+    /* Star rating styles */
+    .star-rating .fas {
+      color: #F59E0B; /* yellow-500 */
+    }
+    .star-rating .far {
+      color: #D1D5DB; /* gray-300 */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .filter-section > div {
+        margin-bottom: 1rem;
+      }
+    }
+    /* Completely hide scrollbar on all major browsers */
+html, body {
+  overflow: hidden;       /* disables both scrollbars */
+  height: 100%;
+}
+
+/* If you still want to allow scroll (just hide the bar), use this instead: */
+body {
+  overflow-y: scroll;     /* enables scroll without showing scrollbar */
+}
+
+body::-webkit-scrollbar {
+  width: 0px;             /* Chrome, Safari, Opera */
+  background: transparent;
+}
+
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}

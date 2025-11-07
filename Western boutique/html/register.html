@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Boutique Login/Register</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- TailwindCSS with Custom Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Roboto', 'sans-serif'],
+            body: ['Poppins', 'sans-serif']
+          },
+          colors: {
+            navy: '#001F54'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/register.css" />
+</head>
+
+<body class="font-body">
+<div class="container">
+  <div class="card">
+    <div class="card-inner" id="card">
+
+      <!-- Login Form -->
+      <div class="form-box login">
+        <h2 class="font-heading">Western Boutique</h2>
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" placeholder="Email" id="loginEmail">
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Password" id="loginPassword">
+          <i class="fas fa-eye toggle-password" onclick="togglePassword('loginPassword', this)"></i>
+        </div>
+        <div style="text-align: right; margin-bottom: 10px;">
+          <a href="#" class="link">Forgot Password?</a>
+        </div>
+        <button onclick="alert('Logged in!')">SignIn</button>
+        <button class="google-btn">
+          <i class="fab fa-google"></i> <span>Sign in with Google</span>
+        </button>
+        <div class="toggle" onclick="flipCard()">Don't have an account? <span>Register</span></div>
+        <div class="toggle">privacy policy/terms and condition</div>
+      </div>
+
+      <!-- Register Form -->
+      <div class="form-box register">
+        <h2 class="font-heading">Create Account</h2>
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Username" id="regUsername">
+        </div>
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" placeholder="Email" id="regEmail">
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Password" id="regPassword" oninput="validatePassword()">
+          <i class="fas fa-eye toggle-password" onclick="togglePassword('regPassword', this)"></i>
+        </div>
+        <div class="error" id="passError"></div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Retype Password" id="regRetype" oninput="validateRetype()">
+        </div>
+        <div class="error" id="retypeError"></div>
+        <div class="input-group">
+          <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #001F54;">+91</span>
+          <input type="tel" placeholder="Mobile Number" id="regMobile" style="padding-left: 40px;" oninput="showVerifyBtn()">
+        </div>
+        <button id="verifyBtn" onclick="showOTP()" style="display:none;">Verify</button>
+
+        <div id="otpSection" style="display:none;">
+          <div id="otpTitle" class="font-heading">OTP Verification</div>
+          <div class="otp">
+            <input maxlength="1" oninput="moveToNext(this, 'otp2')" id="otp1">
+            <input maxlength="1" oninput="moveToNext(this, 'otp3')" id="otp2">
+            <input maxlength="1" oninput="moveToNext(this, 'otp4')" id="otp3">
+            <input maxlength="1" id="otp4" oninput="checkOTP()">
+          </div>
+          <button id="continueBtn" style="display:none;" onclick="verifyOTP()">Continue</button>
+          <div id="otpMessage"></div>
+        </div>
+
+        <button onclick="registerUser()">Register</button>
+        <div class="toggle" onclick="flipCard()">Already have an account? <span>Login</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="../script/register.js"></script>
+</body>
+</html>

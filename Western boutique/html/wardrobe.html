@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Virtual Try-On</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .try-on-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .try-on-header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .try-on-header h1 {
+            font-size: 2.2rem;
+            color: #5d3a9b;
+            margin-bottom: 10px;
+        }
+
+        .try-on-main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .avatar-container {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .avatar-display {
+            width: 300px;
+            height: 500px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar-image {
+            width: 80%;
+            height: auto;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .clothing-item {
+            position: absolute;
+            z-index: 2;
+            pointer-events: none;
+            max-width: 80%;
+        }
+
+        .avatar-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .control-btn {
+            padding: 8px 15px;
+            background-color: #5d3a9b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .control-btn:hover {
+            background-color: #4a2d7c;
+        }
+
+        .wardrobe-container {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .wardrobe-tabs {
+            display: flex;
+            border-bottom: 1px solid #e1e1e1;
+            margin-bottom: 15px;
+        }
+
+        .wardrobe-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .wardrobe-tab.active {
+            border-bottom: 3px solid #5d3a9b;
+            font-weight: bold;
+        }
+
+        .wardrobe-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 5px;
+        }
+
+        .wardrobe-item {
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            cursor: grab;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .wardrobe-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .wardrobe-item img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 8px;
+        }
+
+        .wardrobe-item p {
+            font-size: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .outfit-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .outfit-btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .save-btn {
+            background-color: #5d3a9b;
+            color: white;
+            border: none;
+        }
+
+        .clear-btn {
+            background-color: white;
+            color: #5d3a9b;
+            border: 2px solid #5d3a9b;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: none;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .clothing-container:hover .delete-btn {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .try-on-main {
+                flex-direction: column;
+            }
+            
+            .avatar-display {
+                width: 100%;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="try-on-container">
+        <header class="try-on-header">
+            <h1>Virtual Fitting Room</h1>
+            <p>Try on our collection from the comfort of your home</p>
+        </header>
+
+        <main class="try-on-main">
+            <section class="avatar-container">
+                <div class="avatar-display" id="avatarDisplay">
+                    <img src="../project_images/wardrobe.png" alt="Avatar" class="avatar-image" id="baseAvatar">
+                    <!-- Clothing items will be added here dynamically -->
+                </div>
+
+                <div class="avatar-controls">
+                    <button class="control-btn" id="rotateLeft">Rotate Left</button>
+                    <button class="control-btn" id="frontView">Front View</button>
+                    <button class="control-btn" id="rotateRight">Rotate Right</button>
+                </div>
+
+                <div class="outfit-controls">
+                    <button class="outfit-btn save-btn" id="saveOutfit">Save Outfit</button>
+                    <button class="outfit-btn clear-btn" id="clearOutfit">Clear All</button>
+                </div>
+            </section>
+
+            <section class="wardrobe-container">
+                <div class="wardrobe-tabs">
+                    <div class="wardrobe-tab active" data-category="tops">Tops</div>
+                    <div class="wardrobe-tab" data-category="bottoms">Bottoms</div>
+                    <div class="wardrobe-tab" data-category="dresses">Dresses</div>
+                    <div class="wardrobe-tab" data-category="accessories">Accessories</div>
+                </div>
+
+                <div class="wardrobe-items" id="wardrobeItems">
+                    <!-- Items will be populated dynamically -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample product data
+            const products = {
+                tops: [
+                    { id: 'top1', name: 'Silk Blouse', image: '../project_image/top.jpg', type: 'top', layer: 2, position: { top: '20%', left: '10%' } },
+                    { id: 'top2', name: 'Cotton Tee', image: 'https://i.imgur.com/3a9b5d.png', type: 'top', layer: 2, position: { top: '20%', left: '10%' } },
+                    { id: 'top3', name: 'Knit Sweater', image: 'https://i.imgur.com/9b5d3a.png', type: 'top', layer: 2, position: { top: '15%', left: '10%' } },
+                    { id: 'top4', name: 'Denim Shirt', image: 'https://i.imgur.com/3a5d9b.png', type: 'top', layer: 2, position: { top: '20%', left: '10%' } }
+                ],
+                bottoms: [
+                    { id: 'bottom1', name: 'Skinny Jeans', image: 'https://i.imgur.com/9b3a5d.png', type: 'bottom', layer: 1, position: { top: '50%', left: '10%' } },
+                    { id: 'bottom2', name: 'Midi Skirt', image: 'https://i.imgur.com/5d9b3a.png', type: 'bottom', layer: 1, position: { top: '50%', left: '10%' } },
+                    { id: 'bottom3', name: 'Wide Pants', image: 'https://i.imgur.com/3a5d9b.png', type: 'bottom', layer: 1, position: { top: '50%', left: '10%' } }
+                ],
+                dresses: [
+                    { id: 'dress1', name: 'Summer Dress', image: 'https://i.imgur.com/5d3a9b.png', type: 'dress', layer: 2, position: { top: '15%', left: '10%' } },
+                    { id: 'dress2', name: 'Evening Gown', image: 'https://i.imgur.com/9b5d3a.png', type: 'dress', layer: 2, position: { top: '15%', left: '10%' } }
+                ],
+                accessories: [
+                    { id: 'acc1', name: 'Statement Necklace', image: 'https://i.imgur.com/3a9b5d.png', type: 'accessory', layer: 3, position: { top: '25%', left: '40%' } },
+                    { id: 'acc2', name: 'Silk Scarf', image: 'https://i.imgur.com/5d3a9b.png', type: 'accessory', layer: 3, position: { top: '25%', left: '35%' } }
+                ]
+            };
+
+            // DOM elements
+            const wardrobeItems = document.getElementById('wardrobeItems');
+            const avatarDisplay = document.getElementById('avatarDisplay');
+            const tabs = document.querySelectorAll('.wardrobe-tab');
+            const rotateLeftBtn = document.getElementById('rotateLeft');
+            const frontViewBtn = document.getElementById('frontView');
+            const rotateRightBtn = document.getElementById('rotateRight');
+            const saveOutfitBtn = document.getElementById('saveOutfit');
+            const clearOutfitBtn = document.getElementById('clearOutfit');
+            const baseAvatar = document.getElementById('baseAvatar');
+
+            // Current state
+            let currentCategory = 'tops';
+            let currentRotation = 0;
+            let currentOutfit = [];
+
+            // Initialize the app
+            function init() {
+                renderWardrobeItems(currentCategory);
+                setupEventListeners();
+            }
+
+            // Render wardrobe items for the selected category
+            function renderWardrobeItems(category) {
+                wardrobeItems.innerHTML = '';
+                products[category].forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'wardrobe-item';
+                    itemElement.draggable = true;
+                    itemElement.dataset.id = item.id;
+                    
+                    itemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <p>${item.name}</p>
+                    `;
+                    
+                    wardrobeItems.appendChild(itemElement);
+                });
+            }
+
+            // Setup event listeners
+            function setupEventListeners() {
+                // Tab switching
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        tabs.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        currentCategory = this.dataset.category;
+                        renderWardrobeItems(currentCategory);
+                    });
+                });
+
+                // Drag and drop functionality
+                wardrobeItems.addEventListener('dragstart', function(e) {
+                    if (e.target.classList.contains('wardrobe-item')) {
+                        const itemId = e.target.dataset.id;
+                        const category = currentCategory;
+                        const item = products[category].find(i => i.id === itemId);
+                        e.dataTransfer.setData('text/plain', JSON.stringify(item));
+                    }
+                });
+
+                avatarDisplay.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                });
+
+                avatarDisplay.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    const itemData = JSON.parse(e.dataTransfer.getData('text/plain'));
+                    addClothingItem(itemData);
+                });
+
+                // Avatar controls
+                rotateLeftBtn.addEventListener('click', function() {
+                    currentRotation -= 30;
+                    updateAvatarRotation();
+                });
+
+                rotateRightBtn.addEventListener('click', function() {
+                    currentRotation += 30;
+                    updateAvatarRotation();
+                });
+
+                frontViewBtn.addEventListener('click', function() {
+                    currentRotation = 0;
+                    updateAvatarRotation();
+                });
+
+                // Outfit controls
+                saveOutfitBtn.addEventListener('click', function() {
+                    alert('Outfit saved! In a full implementation, this would save to your account.');
+                });
+
+                clearOutfitBtn.addEventListener('click', function() {
+                    clearOutfit();
+                });
+
+                // Delete clothing items
+                avatarDisplay.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('delete-btn')) {
+                        const itemId = e.target.parentElement.dataset.id;
+                        removeClothingItem(itemId);
+                    }
+                });
+            }
+
+            // Add clothing item to avatar
+            function addClothingItem(item) {
+                // Remove existing item of same type if it exists
+                const existingItemIndex = currentOutfit.findIndex(i => i.type === item.type);
+                if (existingItemIndex !== -1) {
+                    removeClothingItem(currentOutfit[existingItemIndex].id);
+                }
+
+                // Create new clothing item element
+                const itemElement = document.createElement('div');
+                itemElement.className = 'clothing-container';
+                itemElement.dataset.id = item.id;
+                
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="clothing-item" style="top: ${item.position.top}; left: ${item.position.left}; z-index: ${item.layer}">
+                    <button class="delete-btn">×</button>
+                `;
+                
+                avatarDisplay.appendChild(itemElement);
+                currentOutfit.push(item);
+            }
+
+            // Remove clothing item from avatar
+            function removeClothingItem(itemId) {
+                const itemElement = document.querySelector(`.clothing-container[data-id="${itemId}"]`);
+                if (itemElement) {
+                    avatarDisplay.removeChild(itemElement);
+                    currentOutfit = currentOutfit.filter(item => item.id !== itemId);
+                }
+            }
+
+            // Clear all clothing items
+            function clearOutfit() {
+                const clothingItems = document.querySelectorAll('.clothing-container');
+                clothingItems.forEach(item => avatarDisplay.removeChild(item));
+                currentOutfit = [];
+            }
+
+            // Update avatar rotation
+            function updateAvatarRotation() {
+                baseAvatar.style.transform = `rotateY(${currentRotation}deg)`;
+                
+                // Update all clothing items
+                const clothingItems = document.querySelectorAll('.clothing-item');
+                clothingItems.forEach(item => {
+                    item.style.transform = `rotateY(${currentRotation}deg)`;
+                });
+            }
+
+            // Initialize the app
+            init();
+        });
+    </script>
+</body>
+</html>

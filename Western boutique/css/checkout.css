@@ -1,0 +1,25 @@
+
+    @media (max-width: 640px) {
+      .stepper-item {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+    }
+    input:focus::placeholder {
+      opacity: 0;
+    }
+  
+  /* Apply font-sans to all numeric-only elements */
+  .font-numbers {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+
+

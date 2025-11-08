@@ -5,7 +5,4 @@
   "routes": [
     { "src": "/(.*)", "dest": "html/$1" }
   ]
-
-
-  "public": "./"
 }
